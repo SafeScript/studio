@@ -1,0 +1,42 @@
+
+══ Journal: unit tests ══
+
+  ✓ write records entry in log
+  ✓ write does NOT mutate real object
+  ✓ read returns overlay value when written
+  ✓ read falls through to real value when not written
+  ✓ has returns true for written keys
+  ✓ multiple writes to same key keep latest
+  ✓ writes to different objects are independent
+  ✓ writeExternal records external entries
+  ✓ commit applies all writes to real objects
+  ✓ clear discards all writes
+  ✓ summary reports state
+
+══ Journal: rewindTo (time travel) ══
+
+  ✓ rewindTo rebuilds overlay
+  ✓ rewindTo(0) clears overlay
+  ✓ rewind then write creates new branch
+  ✓ undefined values are handled correctly
+
+══ Debug mode: journal integration ══
+
+  ✓ bracket writes go to journal in debug mode
+  ✓ bracket reads see journal overlay
+  ✓ method calls are logged as side effects
+  ✓ commit applies journal writes to real state
+  ✓ discard leaves real state unchanged
+  ✓ multiple writes accumulate in journal
+  ✓ onCommit callback receives result
+
+══ Debug mode: time travel ══
+
+  ✓ rewindTo restores state and notifies host
+
+══════════════════════════════════════════════════
+SafeScript 2.0 Phase 2: Journal Tests
+══════════════════════════════════════════════════
+  Passed: 23
+  Failed: 0
+══════════════════════════════════════════════════

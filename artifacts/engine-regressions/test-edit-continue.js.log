@@ -1,0 +1,30 @@
+
+══ compileTail ══
+
+  ✓ compileTail produces a function
+  ✓ compileTail function receives locals
+
+══ editAndContinue via DebugSession ══
+
+  ✓ editAndContinue changes execution
+  ✓ editAndContinue with new variables
+  ✓ editAndContinue rejects when not paused
+  ✓ editAndContinue rejects invalid source
+
+══ Debug protocol: InProcessDriver ══
+
+  ✓ InProcessDriver delivers events
+  ✓ InProcessDriver commands control session
+  ✓ protocol getLocals returns current state
+  ✓ protocol getHistory returns step history
+  ✓ protocol setBreakpoints works
+  ✓ protocol getJournal returns journal state
+  ✓ protocol commit/discard work
+  ✓ protocol editAndContinue via command
+
+══════════════════════════════════════════════════
+SafeScript 2.0 Phase 3: Edit-and-Continue + Protocol
+══════════════════════════════════════════════════
+  Passed: 14
+  Failed: 0
+══════════════════════════════════════════════════

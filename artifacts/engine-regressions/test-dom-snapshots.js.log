@@ -1,0 +1,38 @@
+
+══ Journal: step-indexed writes ══
+
+  ✓ writes carry step index
+  ✓ writes with no step index get -1
+
+══ Journal: reverse lookup (queryTarget) ══
+
+  ✓ queryTarget returns entries for a target
+  ✓ queryTarget with key filter
+  ✓ queryTarget returns empty for untouched target
+  ✓ queryTargetSteps returns deduplicated step indices
+  ✓ queryTargetSteps with key filter
+  ✓ rewindTo rebuilds target index
+
+══ DebugSession: DOM snapshots ══
+
+  ✓ snapshotDOM captures innerHTML
+  ✓ snapshotDOM returns null without root
+  ✓ restoreDOM sets innerHTML back
+  ✓ multiple snapshots at different states
+  ✓ findSnapshotBefore returns nearest
+  ✓ commit auto-snapshots DOM
+
+══ DebugSession: node reverse lookup ══
+
+  ✓ queryNodeHistory returns journal entries for a node
+  ✓ queryNodeHistory with prop filter
+  ✓ queryNodeSteps returns step indices
+  ✓ getNodeTimeline returns oldest-first timeline
+  ✓ getNodeTimeline for untouched node returns empty
+
+══ Integration: DOM journal + reverse lookup ══
+
+  ✓ DOM journal writes are queryable by node
+  ✓ after rewind, reverse lookup reflects truncated history
+
+21 passed, 0 failed

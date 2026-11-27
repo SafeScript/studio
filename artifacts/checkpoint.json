@@ -1,0 +1,62 @@
+{
+  "safeStudio": "1.0",
+  "page": {
+    "title": "Checkpoint",
+    "sections": [],
+    "theme": {
+      "palette": "indigo",
+      "bg": "dark"
+    },
+    "fonts": [],
+    "classStyles": {},
+    "seo": {},
+    "customTools": [
+      {
+        "id": "_custom/nav-stack-parent",
+        "name": "Nav Stack Parent",
+        "structure": {
+          "sections": [
+            {
+              "layoutKey": "text-full",
+              "blocks": [
+                {
+                  "role": "content",
+                  "tool": "_custom/nav-stack-child",
+                  "content": null
+                }
+              ]
+            }
+          ],
+          "handlers": {},
+          "classStyles": {}
+        },
+        "template": "<div data-tool-instance class=\"ss-tool-instance\"><div class=\"ss-tool-layout\" data-layout=\"text-full\" data-ss-id=\"Section1\" style=\"display:grid;grid-template-columns:1fr;gap:0;padding:60px 32px;min-width:0;\"><div class=\"ss-tool-child\" data-child-id=\"Section1_Block1\" data-ss-id=\"Section1_Block1\"><div data-tool-instance class=\"ss-tool-instance\"><div class=\"ss-tool-layout\" data-layout=\"text-full\" data-ss-id=\"Section1\" style=\"display:grid;grid-template-columns:1fr;gap:0;padding:60px 32px;min-width:0;\"><div class=\"ss-tool-child\" data-child-id=\"Section1_Block1\" data-ss-id=\"Section1_Block1\"><h2>Keep this component</h2></div></div></div></div></div></div>"
+      },
+      {
+        "id": "_custom/nav-stack-child",
+        "name": "Nav Stack Child",
+        "structure": {
+          "sections": [
+            {
+              "layoutKey": "text-full",
+              "blocks": [
+                {
+                  "role": "heading",
+                  "tool": "Streams/html",
+                  "content": "<h2>Keep this component</h2>"
+                }
+              ]
+            }
+          ],
+          "handlers": {},
+          "classStyles": {}
+        },
+        "template": "<div data-tool-instance class=\"ss-tool-instance\"><div class=\"ss-tool-layout\" data-layout=\"text-full\" data-ss-id=\"Section1\" style=\"display:grid;grid-template-columns:1fr;gap:0;padding:60px 32px;min-width:0;\"><div class=\"ss-tool-child\" data-child-id=\"Section1_Block1\" data-ss-id=\"Section1_Block1\"><h2>Keep this component</h2></div></div></div>"
+      }
+    ]
+  },
+  "handlers": {
+    "page:onClick": "/**\n * @safescript 1.0\n * @env browser\n * @needs streams : Q.Streams\n *\n * Handler for Block 1.1 (undefined) → onClick\n */\nfunction onClick(event, context) {\n\t/**\n\t * Available: event, context.block, context.section, context.page\n\t * Elements by ID: Hero_Logo, Section1_Block2, etc.\n\t * Reference by Class: for (element of $Featured$Card) { ... }\n\t */\n\t\n}",
+    "page:onLoad": "/**\n * @safescript 1.0\n * @env browser\n * @needs streams : Q.Streams\n *\n * Handler for Page → onLoad\n */\nfunction onLoad(event, context) {\n\t/**\n\t * Available: event, context.block, context.section, context.page\n\t * Elements by ID: Hero_Logo, Section1_Block2, etc.\n\t * Reference by Class: for (element of $Featured$Card) { ... }\n\t */\n\t\n}"
+  }
+}

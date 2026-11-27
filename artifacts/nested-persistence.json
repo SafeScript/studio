@@ -1,0 +1,64 @@
+{
+  "safeStudio": "1.0",
+  "page": {
+    "title": "Nested Persistence",
+    "sections": [
+      {
+        "layoutKey": "text-full",
+        "blocks": [
+          {
+            "role": "content",
+            "tool": "Q/image",
+            "content": null,
+            "toolOptions": {
+              "alt": "A sample pixel",
+              "assetId": "asset-1795736979270-to8l8"
+            }
+          }
+        ]
+      }
+    ],
+    "assets": [
+      {
+        "id": "asset-1795736979270-to8l8",
+        "name": "sample-pixel.png",
+        "alt": "A sample pixel",
+        "type": "image/png",
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/K7cAAAAASUVORK5CYII="
+      }
+    ],
+    "theme": {
+      "palette": "indigo",
+      "bg": "dark"
+    },
+    "fonts": [],
+    "classStyles": {},
+    "seo": {},
+    "customTools": [
+      {
+        "id": "_custom/nested-layout-ux",
+        "name": "Reusable Story",
+        "icon": "▦",
+        "desc": "A reusable composition of section layouts",
+        "structure": {
+          "sections": [
+            {
+              "layoutKey": "text-full",
+              "blocks": [
+                {
+                  "role": "content",
+                  "tool": "Streams/html",
+                  "content": "<p>Inside saved layout</p>"
+                }
+              ]
+            }
+          ],
+          "handlers": {},
+          "classStyles": {}
+        },
+        "template": "<div data-tool-instance class=\"ss-tool-instance ss-tool-scope-_custom-nested-layout-ux-1f9f4of\"><div class=\"ss-tool-layout\" data-layout=\"text-full\" data-ss-id=\"Section1\" style=\"display:grid;grid-template-columns:1fr;gap:0;padding:60px 32px;min-width:0;\"><div class=\"ss-tool-child\" data-child-id=\"Section1_Block1\" data-ss-id=\"Section1_Block1\" data-ss-qbix-tool=\"Streams/html\" data-ss-qbix-options=\"{}\"><p>Inside saved layout</p></div></div></div>"
+      }
+    ]
+  },
+  "handlers": {}
+}

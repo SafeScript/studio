@@ -1,0 +1,39 @@
+{
+  "safeStudio": "1.0",
+  "page": {
+    "title": "Safe Studio Imported Demo (imported)",
+    "sections": [
+      {
+        "layoutKey": "hero-centered",
+        "customId": "Hero",
+        "blocks": [
+          {
+            "role": "heading",
+            "tool": "Streams/html",
+            "content": "<h1>Safe Studio Demo</h1>"
+          },
+          {
+            "role": "content",
+            "tool": "Streams/html",
+            "content": "<p>Imported, edited, and ready to export.</p>"
+          },
+          {
+            "role": "action",
+            "tool": "Streams/html",
+            "content": "<button>Explore</button>"
+          }
+        ]
+      }
+    ],
+    "assets": [],
+    "theme": {
+      "palette": "indigo",
+      "bg": "dark"
+    },
+    "fonts": [],
+    "classStyles": {},
+    "seo": {},
+    "customTools": []
+  },
+  "handlers": {}
+}

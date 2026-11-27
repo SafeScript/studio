@@ -1,0 +1,153 @@
+{
+  "suites": [
+    {
+      "name": "test-compiler.js",
+      "ok": false,
+      "exitCode": 1,
+      "signal": null,
+      "checks": 0
+    },
+    {
+      "name": "test-battle.js",
+      "ok": false,
+      "exitCode": 1,
+      "signal": null,
+      "checks": 0
+    },
+    {
+      "name": "test-debug-security.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 36
+    },
+    {
+      "name": "test-dom-journal.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 15
+    },
+    {
+      "name": "test-advanced-debug.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 39
+    },
+    {
+      "name": "test-dom-snapshots.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 21
+    },
+    {
+      "name": "test-continuations.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 61
+    },
+    {
+      "name": "test-dom.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 0
+    },
+    {
+      "name": "test-header.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 0
+    },
+    {
+      "name": "test-journal.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 23
+    },
+    {
+      "name": "test-guards-hooks.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 0
+    },
+    {
+      "name": "test-debug.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 24
+    },
+    {
+      "name": "test-type-header.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 0
+    },
+    {
+      "name": "test-uses.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 0
+    },
+    {
+      "name": "test-type-registry.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 0
+    },
+    {
+      "name": "test-memory.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 11
+    },
+    {
+      "name": "test-edit-continue.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 14
+    },
+    {
+      "name": "test.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 0
+    },
+    {
+      "name": "test-v1.4.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 30
+    },
+    {
+      "name": "test-v2.1-security.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 36
+    },
+    {
+      "name": "test-v1.3-facades.js",
+      "ok": true,
+      "exitCode": 0,
+      "signal": null,
+      "checks": 29
+    }
+  ],
+  "passed": 19,
+  "failed": 2
+}

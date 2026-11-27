@@ -1,0 +1,32 @@
+
+═══ SafeScript Compiler Test Suite ═══
+
+── Should compile ──
+── Should fail to compile ──
+  FAIL: new keyword — expected compile error
+── Should run correctly ──
+── Bracket access rewriting ──
+── Global shadowing ──
+  FAIL: Object shadowed — expected "undefined", got "object"
+  FAIL: Array shadowed — expected "undefined", got "object"
+  FAIL: JSON shadowed — expected "undefined", got "object"
+  FAIL: Math shadowed — expected "undefined", got "object"
+  FAIL: Date shadowed — expected "undefined", got "function"
+── AST hashing ──
+── Destructuring ──
+── Spread ──
+── Default parameters ──
+── Sanitizer ──
+── Validate API ──
+  FAIL: validate rejects new
+── For-in / For-of ──
+── Auto-async model ──
+── Guards ──
+── Hooks ──
+
+═══════════════════════════════════════
+  Total:  231
+  Passed: 224
+  Failed: 7
+═══════════════════════════════════════
+

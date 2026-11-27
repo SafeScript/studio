@@ -1,0 +1,62 @@
+
+══ Watch Expressions (evaluate) ══
+
+  ✓ evaluate simple expression while paused
+  ✓ evaluate after two steps
+  ✓ evaluate object access
+  ✓ evaluate arithmetic
+  ✓ evaluate throws when no locals
+  ✓ evaluate does not modify session state
+
+══ Conditional Breakpoints ══
+
+  ✓ conditional breakpoint pauses when condition true
+  ✓ unconditional breakpoint always pauses
+  ✓ condition false skips breakpoint
+  ✓ setConditionalBreakpoint replaces condition
+
+══ Step Over / Step Out ══
+
+  ✓ step advances line by line
+  ✓ stepOver exists and does not crash
+  ✓ stepOut exists and does not crash
+  ✓ pushCall / popCall track depth
+
+══ Session Serialization ══
+
+  ✓ serialize returns JSON-safe object
+  ✓ serialize includes journal entries with numeric targetId
+  ✓ serialize preserves breakpoint conditions
+  ✓ deserialize restores state
+  ✓ deserialize from raw data
+
+══ Fork ══
+
+  ✓ fork creates independent copy
+  ✓ fork modifications do not affect parent
+  ✓ fork copies breakpoints and conditions
+  ✓ fork copies DOM snapshots
+  ✓ fork shares compile references
+
+══ Logpoints ══
+
+  ✓ setLogpoint fires onLog callback
+  ✓ logpoint interpolates {expr} with locals
+  ✓ logpoint does not pause execution
+  ✓ removeLogpoint stops firing
+  ✓ fork copies logpoints
+  ✓ serialize/deserialize includes logpoints
+  ✓ logpoint with failed expr shows error text
+
+══ Before/After Checkpoints ══
+
+  ✓ pauseOn: before pauses before line executes
+  ✓ pauseOn: after pauses after line executes
+  ✓ pauseOn: both pauses at before AND after
+  ✓ setPauseOn changes mode at runtime
+  ✓ breakpoints fire on before phase by default
+  ✓ history includes phase on each entry
+  ✓ fork copies pauseOn setting
+  ✓ serialize/deserialize preserves pauseOn
+
+39 passed, 0 failed

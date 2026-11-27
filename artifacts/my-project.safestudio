@@ -1,0 +1,210 @@
+{
+  "safestudio": "1.0",
+  "type": "project",
+  "name": "My Project",
+  "pages": [
+    {
+      "id": "page-1",
+      "title": "Branch B",
+      "sections": [
+        {
+          "layoutKey": "sidebar-right",
+          "blocks": [
+            {
+              "role": "content",
+              "tool": "_custom/nested-layout-2",
+              "content": null
+            },
+            {
+              "role": "sidebar",
+              "tool": "Streams/html",
+              "content": "Sidebar"
+            },
+            {
+              "role": "content",
+              "tool": "_custom/nested-layout-3",
+              "content": null
+            }
+          ]
+        }
+      ],
+      "handlers": {
+        "0:0:onClick": "var done = 7;\nvar next = done + 1;"
+      },
+      "classStyles": {},
+      "seo": {
+        "description": "",
+        "keywords": "",
+        "author": "",
+        "ogImage": "",
+        "twitterCard": "summary_large_image"
+      },
+      "theme": {
+        "palette": "blue",
+        "bg": "light",
+        "font": "Inter"
+      },
+      "fonts": [],
+      "assets": []
+    },
+    {
+      "id": "page-1795736964725",
+      "title": "Page 2",
+      "sections": [],
+      "handlers": {},
+      "classStyles": {},
+      "seo": {},
+      "theme": {
+        "palette": "rose",
+        "bg": "light"
+      },
+      "fonts": [],
+      "assets": []
+    }
+  ],
+  "tools": [
+    {
+      "id": "_custom/review-card",
+      "name": "Review Card",
+      "icon": "🔧",
+      "desc": "Automated test tool",
+      "structure": {
+        "sections": [
+          {
+            "layoutKey": "text-full",
+            "blocks": [
+              {
+                "role": "heading",
+                "highlighted": false,
+                "tool": "Streams/html",
+                "content": null
+              },
+              {
+                "role": "text",
+                "highlighted": false,
+                "tool": "Streams/html",
+                "content": null
+              }
+            ],
+            "customId": "Root"
+          }
+        ],
+        "handlers": {},
+        "classStyles": {}
+      }
+    },
+    {
+      "id": "_custom/nested-layout-2",
+      "name": "Nested Layout 2",
+      "icon": "▦",
+      "desc": "A reusable composition of section layouts",
+      "structure": {
+        "sections": [
+          {
+            "layoutKey": "hero-split",
+            "blocks": [
+              {
+                "role": "heading",
+                "highlighted": false,
+                "tool": "_custom/nested-layout-4",
+                "content": null
+              },
+              {
+                "role": "media",
+                "highlighted": false,
+                "tool": "Streams/html",
+                "content": null
+              }
+            ],
+            "customId": "Root"
+          },
+          {
+            "layoutKey": "text-3col",
+            "customId": "",
+            "classes": [],
+            "bg": "",
+            "blocks": [
+              {
+                "role": "text",
+                "tool": "Streams/html",
+                "content": "<strong>Column 1</strong>"
+              },
+              {
+                "role": "text",
+                "tool": "Streams/html",
+                "content": "<strong>Column 2</strong>"
+              },
+              {
+                "role": "text",
+                "tool": "Streams/html",
+                "content": "<strong>Column 3</strong>"
+              }
+            ]
+          }
+        ],
+        "handlers": {},
+        "classStyles": {}
+      }
+    },
+    {
+      "id": "_custom/nested-layout-3",
+      "name": "Nested Layout 3",
+      "icon": "▦",
+      "desc": "A reusable composition of section layouts",
+      "structure": {
+        "sections": [
+          {
+            "layoutKey": "text-full",
+            "blocks": [
+              {
+                "role": "heading",
+                "highlighted": false,
+                "tool": "Streams/html",
+                "content": null
+              },
+              {
+                "role": "text",
+                "highlighted": false,
+                "tool": "Streams/html",
+                "content": null
+              }
+            ],
+            "customId": "Root"
+          }
+        ],
+        "handlers": {},
+        "classStyles": {}
+      }
+    },
+    {
+      "id": "_custom/nested-layout-4",
+      "name": "Nested Layout 4",
+      "icon": "▦",
+      "desc": "A reusable composition of section layouts",
+      "structure": {
+        "sections": [
+          {
+            "layoutKey": "text-full",
+            "blocks": [
+              {
+                "role": "heading",
+                "highlighted": false,
+                "tool": "Streams/html",
+                "content": "<h3>Nested inside nested</h3>"
+              },
+              {
+                "role": "text",
+                "highlighted": false,
+                "tool": "Streams/html",
+                "content": null
+              }
+            ],
+            "customId": "Root"
+          }
+        ],
+        "handlers": {},
+        "classStyles": {}
+      }
+    }
+  ]
+}

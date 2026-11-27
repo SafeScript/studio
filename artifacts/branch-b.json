@@ -1,0 +1,203 @@
+{
+  "safeStudio": "1.0",
+  "page": {
+    "title": "Branch B",
+    "sections": [
+      {
+        "layoutKey": "sidebar-right",
+        "blocks": [
+          {
+            "role": "content",
+            "tool": "_custom/nested-layout-2",
+            "content": null
+          },
+          {
+            "role": "sidebar",
+            "tool": "Streams/html",
+            "content": "Sidebar"
+          },
+          {
+            "role": "content",
+            "tool": "_custom/nested-layout-3",
+            "content": null
+          }
+        ]
+      }
+    ],
+    "assets": [],
+    "theme": {
+      "palette": "blue",
+      "bg": "light",
+      "font": "Inter"
+    },
+    "fonts": [],
+    "classStyles": {},
+    "seo": {
+      "description": "",
+      "keywords": "",
+      "author": "",
+      "ogImage": "",
+      "twitterCard": "summary_large_image"
+    },
+    "customTools": [
+      {
+        "id": "_custom/review-card",
+        "name": "Review Card",
+        "icon": "🔧",
+        "desc": "Automated test tool",
+        "cat": "custom",
+        "kind": "custom",
+        "template": "<div data-tool-instance class=\"ss-tool-instance ss-tool-scope-_custom-review-card-whdtuu\"><div class=\"ss-tool-layout\" data-layout=\"text-full\" data-ss-id=\"Root\" style=\"display:grid;grid-template-columns:1fr;gap:0;padding:60px 32px;min-width:0;\"><div class=\"ss-tool-child\" data-child-id=\"Root_Block1\" data-ss-id=\"Root_Block1\" data-ss-qbix-tool=\"Streams/html\" data-ss-qbix-options=\"{}\"><p contenteditable=\"false\">Rich text content. Double-click to edit.</p></div>\n<div class=\"ss-tool-child\" data-child-id=\"Root_Block2\" data-ss-id=\"Root_Block2\" data-ss-qbix-tool=\"Streams/html\" data-ss-qbix-options=\"{}\"><p contenteditable=\"false\">Rich text content. Double-click to edit.</p></div></div></div>",
+        "structure": {
+          "sections": [
+            {
+              "layoutKey": "text-full",
+              "blocks": [
+                {
+                  "role": "heading",
+                  "highlighted": false,
+                  "tool": "Streams/html",
+                  "content": null
+                },
+                {
+                  "role": "text",
+                  "highlighted": false,
+                  "tool": "Streams/html",
+                  "content": null
+                }
+              ],
+              "customId": "Root"
+            }
+          ],
+          "handlers": {},
+          "classStyles": {}
+        }
+      },
+      {
+        "id": "_custom/nested-layout-2",
+        "name": "Nested Layout 2",
+        "icon": "▦",
+        "desc": "A reusable composition of section layouts",
+        "cat": "custom",
+        "kind": "nested-layout",
+        "template": "<div data-tool-instance class=\"ss-tool-instance ss-tool-scope-_custom-nested-layout-2-1mxptk6\"><div class=\"ss-tool-layout\" data-layout=\"hero-split\" data-ss-id=\"Root\" style=\"display:grid;grid-template-columns:1fr 1fr;gap:0;padding:60px 32px;min-width:0;\"><div class=\"ss-tool-child\" data-child-id=\"Root_Block1\" data-ss-id=\"Root_Block1\"><div data-tool-instance class=\"ss-tool-instance ss-tool-scope-_custom-nested-layout-4-1mxptk8\"><div class=\"ss-tool-layout\" data-layout=\"text-full\" data-ss-id=\"Root\" style=\"display:grid;grid-template-columns:1fr;gap:0;padding:60px 32px;min-width:0;\"><div class=\"ss-tool-child\" data-child-id=\"Root_Block1\" data-ss-id=\"Root_Block1\" data-ss-qbix-tool=\"Streams/html\" data-ss-qbix-options=\"{}\"><h3>Nested inside nested</h3></div>\n<div class=\"ss-tool-child\" data-child-id=\"Root_Block2\" data-ss-id=\"Root_Block2\" data-ss-qbix-tool=\"Streams/html\" data-ss-qbix-options=\"{}\"><p contenteditable=\"false\">Rich text content. Double-click to edit.</p></div></div></div></div>\n<div class=\"ss-tool-child\" data-child-id=\"Root_Block2\" data-ss-id=\"Root_Block2\" data-ss-qbix-tool=\"Streams/html\" data-ss-qbix-options=\"{}\"><p contenteditable=\"false\">Rich text content. Double-click to edit.</p></div></div>\n<div class=\"ss-tool-layout\" data-layout=\"text-3col\" data-ss-id=\"Section2\" style=\"display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;padding:48px 32px;min-width:0;\"><div class=\"ss-tool-child\" data-child-id=\"Section2_Block1\" data-ss-id=\"Section2_Block1\" data-ss-qbix-tool=\"Streams/html\" data-ss-qbix-options=\"{}\"><strong>Column 1</strong></div>\n<div class=\"ss-tool-child\" data-child-id=\"Section2_Block2\" data-ss-id=\"Section2_Block2\" data-ss-qbix-tool=\"Streams/html\" data-ss-qbix-options=\"{}\"><strong>Column 2</strong></div>\n<div class=\"ss-tool-child\" data-child-id=\"Section2_Block3\" data-ss-id=\"Section2_Block3\" data-ss-qbix-tool=\"Streams/html\" data-ss-qbix-options=\"{}\"><strong>Column 3</strong></div></div></div>",
+        "structure": {
+          "sections": [
+            {
+              "layoutKey": "hero-split",
+              "blocks": [
+                {
+                  "role": "heading",
+                  "highlighted": false,
+                  "tool": "_custom/nested-layout-4",
+                  "content": null
+                },
+                {
+                  "role": "media",
+                  "highlighted": false,
+                  "tool": "Streams/html",
+                  "content": null
+                }
+              ],
+              "customId": "Root"
+            },
+            {
+              "layoutKey": "text-3col",
+              "customId": "",
+              "classes": [],
+              "bg": "",
+              "blocks": [
+                {
+                  "role": "text",
+                  "tool": "Streams/html",
+                  "content": "<strong>Column 1</strong>"
+                },
+                {
+                  "role": "text",
+                  "tool": "Streams/html",
+                  "content": "<strong>Column 2</strong>"
+                },
+                {
+                  "role": "text",
+                  "tool": "Streams/html",
+                  "content": "<strong>Column 3</strong>"
+                }
+              ]
+            }
+          ],
+          "handlers": {},
+          "classStyles": {}
+        }
+      },
+      {
+        "id": "_custom/nested-layout-3",
+        "name": "Nested Layout 3",
+        "icon": "▦",
+        "desc": "A reusable composition of section layouts",
+        "cat": "custom",
+        "kind": "nested-layout",
+        "template": "<div data-tool-instance class=\"ss-tool-instance ss-tool-scope-_custom-nested-layout-3-1mxptk7\"><div class=\"ss-tool-layout\" data-layout=\"text-full\" data-ss-id=\"Root\" style=\"display:grid;grid-template-columns:1fr;gap:0;padding:60px 32px;min-width:0;\"><div class=\"ss-tool-child\" data-child-id=\"Root_Block1\" data-ss-id=\"Root_Block1\" data-ss-qbix-tool=\"Streams/html\" data-ss-qbix-options=\"{}\"><p contenteditable=\"false\">Rich text content. Double-click to edit.</p></div>\n<div class=\"ss-tool-child\" data-child-id=\"Root_Block2\" data-ss-id=\"Root_Block2\" data-ss-qbix-tool=\"Streams/html\" data-ss-qbix-options=\"{}\"><p contenteditable=\"false\">Rich text content. Double-click to edit.</p></div></div></div>",
+        "structure": {
+          "sections": [
+            {
+              "layoutKey": "text-full",
+              "blocks": [
+                {
+                  "role": "heading",
+                  "highlighted": false,
+                  "tool": "Streams/html",
+                  "content": null
+                },
+                {
+                  "role": "text",
+                  "highlighted": false,
+                  "tool": "Streams/html",
+                  "content": null
+                }
+              ],
+              "customId": "Root"
+            }
+          ],
+          "handlers": {},
+          "classStyles": {}
+        }
+      },
+      {
+        "id": "_custom/nested-layout-4",
+        "name": "Nested Layout 4",
+        "icon": "▦",
+        "desc": "A reusable composition of section layouts",
+        "cat": "custom",
+        "kind": "nested-layout",
+        "template": "<div data-tool-instance class=\"ss-tool-instance ss-tool-scope-_custom-nested-layout-4-1mxptk8\"><div class=\"ss-tool-layout\" data-layout=\"text-full\" data-ss-id=\"Root\" style=\"display:grid;grid-template-columns:1fr;gap:0;padding:60px 32px;min-width:0;\"><div class=\"ss-tool-child\" data-child-id=\"Root_Block1\" data-ss-id=\"Root_Block1\" data-ss-qbix-tool=\"Streams/html\" data-ss-qbix-options=\"{}\"><h3>Nested inside nested</h3></div>\n<div class=\"ss-tool-child\" data-child-id=\"Root_Block2\" data-ss-id=\"Root_Block2\" data-ss-qbix-tool=\"Streams/html\" data-ss-qbix-options=\"{}\"><p contenteditable=\"false\">Rich text content. Double-click to edit.</p></div></div></div>",
+        "structure": {
+          "sections": [
+            {
+              "layoutKey": "text-full",
+              "blocks": [
+                {
+                  "role": "heading",
+                  "highlighted": false,
+                  "tool": "Streams/html",
+                  "content": "<h3>Nested inside nested</h3>"
+                },
+                {
+                  "role": "text",
+                  "highlighted": false,
+                  "tool": "Streams/html",
+                  "content": null
+                }
+              ],
+              "customId": "Root"
+            }
+          ],
+          "handlers": {},
+          "classStyles": {}
+        }
+      }
+    ]
+  },
+  "handlers": {
+    "0:0:onClick": "var done = 7;\nvar next = done + 1;"
+  }
+}

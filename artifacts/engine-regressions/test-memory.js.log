@@ -1,0 +1,16 @@
+SafeScript Memory Limit Tests
+══════════════════════════════════════════════════
+
+  ✓ small script runs fine within limits
+  ✓ array operations track memory
+  ✓ maxMemory option is respected
+  ✓ string repeat tracks allocation
+  ✓ Array.from tracks allocation
+  ✓ JSON.parse tracks allocation
+  ✓ Object.create tracks allocation
+  ✓ new constructor tracks allocation
+  ✓ map tracks allocation on result
+  ✓ concat tracks allocation
+  ✓ default maxMemory is 64 MB
+
+11 passed, 0 failed

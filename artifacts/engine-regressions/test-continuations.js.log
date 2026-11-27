@@ -1,0 +1,62 @@
+OK arithmetic
+OK const and let
+OK conditional
+OK for loop
+OK while
+OK do while
+OK continue/break
+OK for of
+OK for in
+OK nested calls
+OK recursion
+OK closure
+OK iteration closures
+OK try catch
+OK finally return
+OK finally mutation
+OK switch
+OK array destructuring
+OK object destructuring
+OK parameter defaults
+OK short circuit
+OK logical assignment
+OK postfix
+OK single eval member
+OK map callback
+OK reduce callback
+OK filter callback
+OK object methods this
+OK computed blocked
+OK edit retains live state and skips initialization
+OK edit preserves injected capabilities
+OK edit inserts statements after pause
+OK edit inside active nested call preserves caller operand
+OK step over skips nested call; step out returns caller
+OK rewind restores executable state and preserves future
+OK fork independently executes two futures
+OK nested history snapshots do not drift
+OK journal cursor follows writes rather than checkpoint count
+OK invalid edit preserves resumable session
+OK active parameter changes rejected
+OK const cannot be changed from locals
+OK opaque host call prevents misleading rewind
+OK max ops protects continuation execution
+OK forks preserve closure aliasing and independent captured cells
+OK seeded random is independent in fork
+OK scoped array methods commit only on request
+OK checkpoint snapshot memory is bounded
+OK debug compiler rejects duplicate lexical declarations
+OK DOM projection, typed commit, discard and existing listeners
+OK DOM structure remains sandboxed until commit
+OK DOM checkpoints can restore structure and continue twice
+OK protocol seeks and sets a live local
+OK editing a loop body keeps the current iteration
+OK forged DOM marker cannot bypass immutable snapshots
+OK scope functions retain host source wrapping
+OK caught engine errors do not expose source paths
+OK scoped Map and Set mutations remain transactional
+OK injected scalar bindings remain mutable
+OK commit establishes a boundary across forked sessions
+OK regex literals retain their pattern and flags
+OK resumed function name remains stable
+{"passed":61,"failed":0}

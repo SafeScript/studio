@@ -1,0 +1,11 @@
+PASS Actual Test-mode click pauses the real event
+PASS Event has expandable steps and coordinated scrubber
+PASS Original future runs with a sandboxed DOM projection
+PASS Scrubbing backward restores the exact live bindings
+PASS Editing code through keyboard preserves paused state
+PASS Apply edits and Continue create a different executable future
+PASS Both futures remain independently inspectable with source versions
+PASS Range keyboard navigation restores actual checkpoints
+PASS Events arriving while paused are queued
+PASS Phone explorer fits narrow viewports with accessible controls
+PASS Rejected edit keeps the original session runnable

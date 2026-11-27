@@ -1,0 +1,17 @@
+{
+  "name": "safe-studio-debugger-review",
+  "version": "1.1.0",
+  "private": true,
+  "scripts": {
+    "build": "node build-editor.cjs",
+    "test:editor": "node run-exhaustive.cjs",
+    "test:explorer": "node tests/test-execution-explorer.cjs",
+    "test:engine": "node tests/run-engine-regressions.cjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "playwright": "1.62.1",
+    "@sparticuz/chromium": "158.0.0",
+    "jsdom": "29.1.1"
+  }
+}

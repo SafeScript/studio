@@ -1,0 +1,104 @@
+
+═══ SafeScript Battle Test Suite ═══
+
+── Prototype pollution attacks ──
+
+── Global escape attempts ──
+  FAIL: Object shadowed — expected "undefined", got "object"
+  FAIL: Array shadowed — expected "undefined", got "object"
+  FAIL: String shadowed — expected "undefined", got "object"
+  FAIL: Number shadowed — expected "undefined", got "object"
+  FAIL: Error shadowed — expected "undefined", got "function"
+  FAIL: TypeError shadowed — expected "undefined", got "function"
+  FAIL: RangeError shadowed — expected "undefined", got "function"
+  FAIL: SyntaxError shadowed — expected "undefined", got "function"
+  FAIL: ReferenceError shadowed — expected "undefined", got "function"
+  FAIL: Map shadowed — expected "undefined", got "function"
+  FAIL: Set shadowed — expected "undefined", got "function"
+  FAIL: Date shadowed — expected "undefined", got "function"
+  FAIL: RegExp shadowed — expected "undefined", got "function"
+  FAIL: JSON shadowed — expected "undefined", got "object"
+  FAIL: Math shadowed — expected "undefined", got "object"
+  FAIL: encodeURI shadowed — expected "undefined", got "function"
+  FAIL: decodeURI shadowed — expected "undefined", got "function"
+  FAIL: isNaN shadowed — expected "undefined", got "function"
+  FAIL: isFinite shadowed — expected "undefined", got "function"
+  FAIL: parseInt shadowed — expected "undefined", got "function"
+  FAIL: parseFloat shadowed — expected "undefined", got "function"
+  FAIL: NaN shadowed — expected "undefined", got "number"
+  FAIL: Infinity shadowed — expected "undefined", got "number"
+
+── Blocked identifier attacks ──
+  FAIL: this — should have thrown
+
+── Blocked keyword attacks ──
+  FAIL: new — should have thrown
+
+── Template literal blocking ──
+
+── String escape handling ──
+
+── Number literal edge cases ──
+
+── Operator edge cases ──
+
+── Control flow edge cases ──
+
+── Function edge cases ──
+
+── Destructuring edge cases ──
+
+── Spread edge cases ──
+
+── Scope injection and isolation ──
+
+── Sanitizer edge cases ──
+  FAIL: function passes through
+
+── Validate API ──
+  FAIL: rejects new
+
+── AST hashing ──
+
+── Complex real-world patterns ──
+
+── Deep nesting stress tests ──
+
+── Edge case expressions ──
+  FAIL: instanceof with injected Array — threw: Right-hand side of 'instanceof' is not callable
+
+── Unicode in identifiers and strings ──
+
+── Regex literals ──
+
+── Multiple statements and semicolons ──
+
+── Error handling patterns ──
+
+── Async/await (blocked keywords) ──
+
+── Tricky attack vectors ──
+
+── Boundary conditions ──
+
+── do-while edge cases ──
+
+── Compound member expressions ──
+
+
+═══════════════════════════════════════
+  BATTLE TEST RESULTS
+═══════════════════════════════════════
+  Total:  382
+  Passed: 354
+  Failed: 28
+═══════════════════════════════════════
+
+  Failed sections:
+    Global escape attempts: 23 failures
+    Blocked identifier attacks: 1 failures
+    Blocked keyword attacks: 1 failures
+    Sanitizer edge cases: 1 failures
+    Validate API: 1 failures
+    Edge case expressions: 1 failures
+

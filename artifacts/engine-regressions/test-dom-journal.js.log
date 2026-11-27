@@ -1,0 +1,32 @@
+
+══ DOM Journal: attachDOMJournal ══
+
+  ✓ attachDOMJournal adds hooks to context
+  ✓ detach removes hooks from context
+  ✓ journalWrite records to journal without mutating node
+  ✓ journalRead checks overlay then falls through
+
+══ DOM Journal: attribute journal routing ══
+
+  ✓ setAttribute writes to journal
+  ✓ getAttribute reads journal overlay
+
+══ DOM Journal: style journal routing ══
+
+  ✓ style facade write goes to journal in debug mode
+  ✓ style facade read checks journal overlay
+
+══ DOM Journal: SafeStyle sub-facade integration ══
+
+  ✓ SafeStyle.create routes through journal when context has hooks
+  ✓ SafeStyle.create works normally without journal
+  ✓ SafeStyle setProperty routes through journal
+  ✓ SafeStyle getPropertyValue reads from journal
+  ✓ SafeStyle cssText routes through journal
+
+══ DOM Journal: commit applies to real DOM ══
+
+  ✓ journal commit applies attribute writes to real nodes
+  ✓ journal discard leaves real DOM untouched
+
+15 passed, 0 failed

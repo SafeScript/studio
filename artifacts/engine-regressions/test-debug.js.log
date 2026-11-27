@@ -1,0 +1,55 @@
+
+══ Compiler: debug emission ══
+
+  ✓ compile with debug: true produces __dbg calls
+  ✓ compile without debug does not produce __dbg calls
+  ✓ debug emission captures locals
+  ✓ debug emission handles expressions
+
+══ DebugSession: basic stepping ══
+
+  ✓ debug() returns a DebugSession
+  ✓ session pauses at first statement (stepping = true by default)
+  ✓ step advances one statement
+  ✓ continue runs to end
+  ✓ continue stops at breakpoint
+
+══ DebugSession: locals inspection ══
+
+  ✓ locals are captured on pause
+  ✓ locals update as execution progresses
+  ✓ scope variables are accessible
+
+══ DebugSession: history ══
+
+  ✓ history records steps
+  ✓ history includes line numbers
+
+══ DebugSession: control flow ══
+
+  ✓ if/else branches are debuggable
+  ✓ for loops are debuggable
+  ✓ while loops are debuggable
+  ✓ try/catch is debuggable
+
+══ DebugSession: functions ══
+
+  ✓ function declarations are debuggable
+  ✓ scope method calls work in debug mode
+
+══ DebugSession: stop ══
+
+  ✓ stop terminates execution
+  ✓ toggleBreakpoint adds and removes
+
+══ DebugSession: edit-and-continue ══
+
+  ✓ setReplacement causes function swap
+  ✓ replacement receives current locals
+
+══════════════════════════════════════════════════
+SafeScript 2.0 Debug Tests
+══════════════════════════════════════════════════
+  Passed: 24
+  Failed: 0
+══════════════════════════════════════════════════

@@ -1,0 +1,34 @@
+{
+  "safeStudio": "1.0",
+  "type": "tool",
+  "tool": {
+    "id": "_custom/review-card",
+    "name": "Review Card",
+    "icon": "🔧",
+    "desc": "Automated test tool",
+    "structure": {
+      "sections": [
+        {
+          "layoutKey": "text-full",
+          "blocks": [
+            {
+              "role": "heading",
+              "highlighted": false,
+              "tool": "Streams/html",
+              "content": null
+            },
+            {
+              "role": "text",
+              "highlighted": false,
+              "tool": "Streams/html",
+              "content": null
+            }
+          ],
+          "customId": "Root"
+        }
+      ],
+      "handlers": {},
+      "classStyles": {}
+    }
+  }
+}

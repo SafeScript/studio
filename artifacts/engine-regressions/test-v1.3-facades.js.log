@@ -1,0 +1,52 @@
+
+  BUILTIN_TYPES — new v1.3 entries
+    ✓ SafeJQuery is registered
+    ✓ SafeQ is registered
+    ✓ SafeWindow is registered
+    ✓ All original types still present
+
+  resolveUses — new types
+    ✓ resolveUses recognizes SafeJQuery
+    ✓ resolveUses recognizes SafeQ
+    ✓ resolveUses handles combined @uses
+
+  parseHeader — @uses with new types
+    ✓ parse @uses $: SafeJQuery
+    ✓ parse @uses Q: SafeQ
+
+  SafeWindow — BLOCKED_WINDOW_PROPS
+    ✓ document is blocked
+    ✓ location is blocked
+    ✓ eval is blocked
+    ✓ fetch is blocked
+    ✓ localStorage is blocked
+    ✓ crypto is blocked
+    ✓ Worker is blocked
+    ✓ alert/confirm/prompt are blocked
+    ✓ open/close are blocked
+
+  Safe$ — module exports
+    ✓ createSafeJQuery is exported
+
+  SafeQ — module exports
+    ✓ createSafeQ is exported
+
+  DOM index — v1.3 type exports
+    ✓ SafeWindow type exported
+    ✓ SafeJQuery type exported
+    ✓ SafeQ type exported
+    ✓ createDOMContext still exported
+    ✓ DEFAULT_TAGS still exported
+
+  Browser bundle — build integrity
+    ✓ browser.js builds without error
+    ✓ bundle contains DOM modules
+    ✓ bundle contains SafeJQuery and SafeQ in types
+    ✓ bundle is a valid IIFE
+
+══════════════════════════════════════════════════
+SafeScript v1.3 — New Facade Tests
+══════════════════════════════════════════════════
+  Passed: 29
+  Failed: 0
+══════════════════════════════════════════════════

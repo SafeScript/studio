@@ -1,0 +1,97 @@
+{
+  "checks": [
+    {
+      "name": "Actual Test-mode click pauses the real event",
+      "ok": true,
+      "detail": {
+        "line": 9,
+        "subtotal": 174,
+        "discount": 10
+      }
+    },
+    {
+      "name": "Event has expandable steps and coordinated scrubber",
+      "ok": true,
+      "detail": {
+        "rows": 18
+      }
+    },
+    {
+      "name": "Original future runs with a sandboxed DOM projection",
+      "ok": true,
+      "detail": {
+        "result": 164,
+        "original": "$174",
+        "preview": "$164.00"
+      }
+    },
+    {
+      "name": "Scrubbing backward restores the exact live bindings",
+      "ok": true,
+      "detail": {
+        "checkpoint": 18,
+        "firstFuture": 27
+      }
+    },
+    {
+      "name": "Editing code through keyboard preserves paused state",
+      "ok": true,
+      "detail": {
+        "pending": "Edits pending · apply on next step"
+      }
+    },
+    {
+      "name": "Apply edits and Continue create a different executable future",
+      "ok": true,
+      "detail": {
+        "result": 137.9,
+        "branchPoint": 18
+      }
+    },
+    {
+      "name": "Both futures remain independently inspectable with source versions",
+      "ok": true,
+      "detail": {
+        "firstFuture": 27,
+        "secondFuture": 37
+      }
+    },
+    {
+      "name": "Range keyboard navigation restores actual checkpoints",
+      "ok": true,
+      "detail": {
+        "from": "27",
+        "to": "26"
+      }
+    },
+    {
+      "name": "Events arriving while paused are queued",
+      "ok": true,
+      "detail": {
+        "queued": true
+      }
+    },
+    {
+      "name": "Phone explorer fits narrow viewports with accessible controls",
+      "ok": true,
+      "detail": {
+        "widths": [
+          320,
+          360,
+          390,
+          430
+        ]
+      }
+    },
+    {
+      "name": "Rejected edit keeps the original session runnable",
+      "ok": true,
+      "detail": {
+        "accepted": false,
+        "session": "paused"
+      }
+    }
+  ],
+  "failures": [],
+  "jsErrors": []
+}

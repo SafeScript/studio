@@ -1,0 +1,55 @@
+
+══ new keyword — built-in constructors ══
+
+  ✓ new Map()
+  ✓ new Set()
+  ✓ new Date()
+  ✓ new RegExp()
+  ✓ new Error()
+  ✓ new TypeError()
+  ✓ new Map with initial entries
+  ✓ new Set with initial values
+
+══ new keyword — host-registered types ══
+
+  ✓ new on registered type works
+  ✓ new on registered type — methods work
+
+══ new keyword — opts.allowNew ══
+
+  ✓ opts.allowNew allows unlisted constructor
+
+══ new keyword — blocked constructors ══
+
+  ✓ new on unregistered type throws
+  ✓ new Function is still blocked (identifier)
+
+══ Return value sanitization — POD ══
+
+  ✓ primitives pass through
+  ✓ plain objects pass through
+  ✓ arrays pass through
+  ✓ nested objects/arrays pass through
+  ✓ functions are stripped from returned objects
+  ✓ returned function becomes undefined
+  ✓ returned closure becomes undefined
+  ✓ module pattern returns data only
+  ✓ Date instances pass through
+  ✓ Map instances pass through
+  ✓ Set instances pass through
+  ✓ RegExp instances pass through
+  ✓ Error instances pass through
+  ✓ registered type instances pass through
+  ✓ rawReturn opt disables sanitization
+
+══ Side effects still work ══
+
+  ✓ Q.Tool.define pattern (side effect, no return)
+  ✓ callbacks work during execution
+
+══════════════════════════════════════════════════
+SafeScript v1.4 Tests
+══════════════════════════════════════════════════
+  Passed: 30
+  Failed: 0
+══════════════════════════════════════════════════

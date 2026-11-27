@@ -1,0 +1,54 @@
+
+══ SafeScript v2.1 Security Tests ══
+
+── ReDoS Guard ──
+  [32m✓[0m normal regex match works
+  [32m✓[0m normal regex test works
+  [32m✓[0m normal regex replace works
+  [32m✓[0m normal regex split works
+  [32m✓[0m normal regex search works
+  [32m✓[0m blocks nested quantifiers (a+)+
+  [32m✓[0m blocks nested quantifiers (\d+)+
+  [32m✓[0m blocks nested quantifiers (a*)*
+  [32m✓[0m blocks nested quantifiers with {n,m}
+  [32m✓[0m blocks nested quantifiers via RegExp constructor
+  [32m✓[0m blocks oversized regex input
+  [32m✓[0m allows large but under-limit input
+  [32m✓[0m blocks nested quantifiers on test()
+  [32m✓[0m allows non-nested quantifiers
+  [32m✓[0m allows optional groups without nesting
+
+── Error.stack Stripping ──
+  [32m✓[0m Error().stack does not contain file paths
+  [32m✓[0m Error().stack contains the error name and message
+  [32m✓[0m TypeError().stack is stripped
+  [32m✓[0m RangeError().stack is stripped
+  [32m✓[0m SyntaxError().stack is stripped
+  [32m✓[0m ReferenceError().stack is stripped
+  [32m✓[0m caught runtime error has stripped stack
+  [32m✓[0m caught TypeError from __call has stripped stack
+  [32m✓[0m Error message is preserved
+  [32m✓[0m Error instanceof check works
+
+── Scope Function toString() ──
+  [32m✓[0m scope function toString() hides source
+  [32m✓[0m scope function still works normally
+  [32m✓[0m scope function preserves name
+  [32m✓[0m scope function preserves length
+  [32m✓[0m scope function toString cannot be overwritten (frozen)
+  [32m✓[0m scope function toSource() also hides source
+  [32m✓[0m nested scope functions are wrapped
+  [32m✓[0m scope function called with this context works
+
+── Combined Edge Cases ──
+  [32m✓[0m ReDoS guard works with scope-provided string
+  [32m✓[0m ReDoS + error stack: caught ReDoS error has clean stack
+  [32m✓[0m wrapped scope function + error handling work together
+
+══════════════════════════════════════════════════
+SafeScript v2.1 Security Tests
+══════════════════════════════════════════════════
+  Passed: 36
+  Failed: 0
+══════════════════════════════════════════════════
+

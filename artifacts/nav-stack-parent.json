@@ -1,0 +1,25 @@
+{
+  "safeStudio": "1.0",
+  "type": "tool",
+  "tool": {
+    "id": "_custom/nav-stack-parent",
+    "name": "Nav Stack Parent",
+    "structure": {
+      "sections": [
+        {
+          "layoutKey": "text-full",
+          "blocks": [
+            {
+              "role": "content",
+              "tool": "_custom/nav-stack-child",
+              "content": null
+            }
+          ]
+        }
+      ],
+      "handlers": {},
+      "classStyles": {}
+    },
+    "template": "<div data-tool-instance class=\"ss-tool-instance\"><div class=\"ss-tool-layout\" data-layout=\"text-full\" data-ss-id=\"Section1\" style=\"display:grid;grid-template-columns:1fr;gap:0;padding:60px 32px;min-width:0;\"><div class=\"ss-tool-child\" data-child-id=\"Section1_Block1\" data-ss-id=\"Section1_Block1\"><div data-tool-instance class=\"ss-tool-instance\"><div class=\"ss-tool-layout\" data-layout=\"text-full\" data-ss-id=\"Section1\" style=\"display:grid;grid-template-columns:1fr;gap:0;padding:60px 32px;min-width:0;\"><div class=\"ss-tool-child\" data-child-id=\"Section1_Block1\" data-ss-id=\"Section1_Block1\"><h2>Keep this component</h2></div></div></div></div></div></div>"
+  }
+}

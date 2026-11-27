@@ -1,0 +1,28 @@
+{
+  "safeStudio": "1.0",
+  "type": "tool",
+  "tool": {
+    "id": "_custom/q-runtime-layout",
+    "name": "Q Runtime Layout",
+    "structure": {
+      "sections": [
+        {
+          "layoutKey": "text-full",
+          "blocks": [
+            {
+              "role": "content",
+              "tool": "Streams/html",
+              "toolOptions": {
+                "publisherId": "demo",
+                "streamName": "nested"
+              },
+              "content": "<p>Nested tool</p>"
+            }
+          ]
+        }
+      ],
+      "handlers": {},
+      "classStyles": {}
+    }
+  }
+}

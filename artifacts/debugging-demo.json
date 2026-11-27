@@ -1,0 +1,44 @@
+{
+  "safeStudio": "1.0",
+  "type": "page",
+  "page": {
+    "title": "Orbit — team workspace",
+    "sections": [
+      {
+        "layoutKey": "hero-split",
+        "customId": "Quote",
+        "blocks": [
+          {
+            "role": "content",
+            "tool": "Streams/html",
+            "content": "<div style=\"padding:32px 24px\"><p style=\"font-size:11px;font-weight:700;letter-spacing:.18em;color:#6366f1\">ORBIT / TEAM WORKSPACE</p><h1 style=\"font-size:46px;line-height:1.08;margin:18px 0;color:#eef3ff\">A plan that grows<br>with your team.</h1><p style=\"font-size:16px;line-height:1.7;color:#a5b0ca;max-width:360px\">One shared space for your ideas, projects, and people. Explore the live quote before you choose.</p><p style=\"font-size:12px;color:#71809b;margin-top:24px\">6 seats · $29 per seat · monthly billing</p></div>"
+          },
+          {
+            "role": "content",
+            "tool": "Streams/html",
+            "content": "<div style=\"margin:18px;background:white;border:1px solid #dde3f0;border-radius:20px;padding:28px 34px;box-shadow:0 16px 50px #10224b12\"><p style=\"font-size:11px;letter-spacing:.13em;color:#7a89a5;font-weight:700\">YOUR TEAM PLAN</p><p style=\"font-size:16px;color:#263451;margin:14px 0 2px\">Orbit Pro</p><div style=\"display:flex;align-items:baseline;gap:8px\"><strong class=\"quote-total\" style=\"font-size:56px;letter-spacing:-.05em;color:#182644\">$174</strong><span style=\"color:#8792a9;font-size:13px\">/ month</span></div><p class=\"quote-note\" style=\"color:#728097;font-size:13px\">Includes all 6 team members</p><hr style=\"border:0;border-top:1px solid #e8ecf4;margin:18px 0\"><p style=\"font-size:13px;color:#596780;line-height:1.9\">✓ Unlimited projects<br>✓ Shared team library<br>✓ Priority support</p><button class=\"quote-action\" style=\"width:100%;padding:13px;background:#5f59ef;color:white;border:0;border-radius:9px;font-weight:600;cursor:pointer\">Calculate team quote →</button></div>"
+          }
+        ]
+      }
+    ],
+    "assets": [],
+    "theme": {
+      "palette": "indigo",
+      "bg": "light",
+      "font": "Inter"
+    },
+    "fonts": [],
+    "classStyles": {},
+    "seo": {
+      "description": "",
+      "keywords": "",
+      "author": "",
+      "ogImage": "",
+      "twitterCard": "summary_large_image"
+    },
+    "customTools": []
+  },
+  "handlers": {
+    "0:1:onClick": "function onClick(event, context) {\n  var seats = 6;\n  var price = 29;\n  var subtotal = seats * price;\n  var discount = 0;\n  for (var tier = 1; tier <= 2; tier++) {\n    discount = discount + 5;\n  }\n  var total = subtotal - discount;\n  context.block.querySelector(\".quote-total\").textContent = \"$\" + total.toFixed(2);\n  context.block.querySelector(\".quote-note\").textContent = seats + \" seats · $\" + discount + \" credit\";\n  return total;\n}"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "compiler": {
+    "baseline": 7,
+    "current": 7,
+    "sameFailures": true,
+    "introduced": []
+  },
+  "battle": {
+    "baseline": 28,
+    "current": 28,
+    "sameFailures": true,
+    "introduced": []
+  }
+}

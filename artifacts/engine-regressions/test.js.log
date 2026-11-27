@@ -1,0 +1,17 @@
+
+═══ SafeJS Test Suite ═══
+
+── Should pass validation ──
+── Should fail validation ──
+── Should run correctly ──
+── Should block runtime escapes ──
+── Sanitizer ──
+── Edge cases ──
+── Compile errors ──
+
+═══════════════════════════
+  Total:  153
+  Passed: 153
+  Failed: 0
+═══════════════════════════
+

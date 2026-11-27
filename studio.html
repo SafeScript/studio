@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no">
+<title>Safe Studio — Visual Page Builder with Time-Traveling Debugger</title>
+<meta name="description" content="A visual page builder in one HTML file. 75 tools, mobile-smart blocks, SafeScript handlers, and a time-traveling debugger that lets you scrub, fork, and rewind DOM changes.">
+<meta property="og:title" content="Safe Studio — Visual Page Builder with Time-Traveling Debugger">
+<meta property="og:description" content="A visual page builder in one HTML file. 75 tools, mobile-smart blocks, SafeScript handlers, and a time-traveling debugger that lets you scrub, fork, and rewind DOM changes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qbix.com/safe-studio">
+<meta property="og:image" content="https://qbix.com/img/safe-studio/og.png">
+<meta property="og:image:secure_url" content="https://qbix.com/img/safe-studio/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Safe Studio — Visual Page Builder with Time-Traveling Debugger">
+<meta name="twitter:description" content="A visual page builder in one HTML file. 75 tools, mobile-smart blocks, SafeScript handlers, and a time-traveling debugger that lets you scrub, fork, and rewind DOM changes.">
+<meta name="twitter:image" content="https://qbix.com/img/safe-studio/og.png">
+<meta name="twitter:url" content="https://qbix.com/safe-studio">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;max-width:100vw}
+
+:root{
+  --brand:#6366f1;
+  --brand-bg:rgba(99,102,241,0.08);
+  --brand-dim:rgba(99,102,241,0.5);
+  --surface:#ffffff;
+  --surface-2:#f8f9fb;
+  --surface-3:#f0f1f4;
+  --text:#1a1c23;
+  --text-2:#5a5e6e;
+  --text-3:#9298a8;
+  --border:#e2e4ea;
+  --border-2:#d0d3db;
+  --shadow:0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --radius:10px;
+  --toc-w:220px;
+  --font-display:'Space Grotesk', system-ui, sans-serif;
+  --font-body:'Inter', system-ui, sans-serif;
+  --green:#10b981;
+  --blue:#3b82f6;
+  --orange:#f59e0b;
+  --red:#ef4444;
+}
+
+@media(prefers-color-scheme:dark){
+  :root{
+    --surface:#14161e;
+    --surface-2:#1c1f2a;
+    --surface-3:#262a38;
+    --text:#e8eaf0;
+    --text-2:#a0a5b8;
+    --text-3:#6b7080;
+    --border:#2e3244;
+    --border-2:#3a3f52;
+    --shadow:0 1px 4px rgba(0,0,0,0.3);
+    --brand-bg:rgba(99,102,241,0.12);
+  }
+}
+
+body{
+  font-family:var(--font-body);
+  font-size:16px;line-height:1.7;
+  color:var(--text);background:var(--surface);
+}
+
+/* ── TOC sidebar (desktop) ── */
+nav.toc{
+  position:fixed;top:0;left:0;bottom:0;width:var(--toc-w);
+  padding:24px 16px;overflow-y:auto;
+  border-right:1px solid var(--border);background:var(--surface-2);
+  z-index:20;
+}
+nav.toc .wordmark{
+  font-family:var(--font-display);font-size:18px;font-weight:700;
+  color:var(--brand);letter-spacing:-0.5px;margin-bottom:20px;
+}
+nav.toc a{
+  display:block;padding:5px 10px;margin:1px 0;
+  font-size:13px;font-weight:500;color:var(--text-2);
+  text-decoration:none;border-radius:6px;
+  transition:background .15s, color .15s;
+}
+nav.toc a:hover{background:var(--brand-bg);color:var(--text)}
+nav.toc a.active{background:var(--brand);color:#fff}
+
+/* ── Main content ── */
+main{
+  margin-left:var(--toc-w);padding:40px 48px 80px;max-width:800px;
+}
+
+h1{
+  font-family:var(--font-display);font-size:36px;font-weight:700;
+  letter-spacing:-1px;line-height:1.2;margin-bottom:8px;color:var(--text);
+}
+.subtitle{font-size:17px;color:var(--text-2);margin-bottom:40px}
+
+section.card{
+  border:1px solid var(--border);border-radius:var(--radius);
+  padding:32px;margin-bottom:28px;background:var(--surface);
+  box-shadow:var(--shadow);
+}
+section.card h2{
+  font-family:var(--font-display);font-size:22px;font-weight:700;
+  letter-spacing:-0.3px;margin-bottom:14px;color:var(--text);
+}
+section.card p{color:var(--text);margin-bottom:16px}
+section.card p:last-child{margin-bottom:0}
+section.card .svg-wrap{margin:20px 0;text-align:center}
+section.card .svg-wrap svg{max-width:100%;height:auto}
+
+code{
+  font-family:'SF Mono',Menlo,monospace;font-size:0.88em;
+  background:var(--surface-3);padding:2px 6px;border-radius:4px;
+  color:var(--brand);
+}
+
+/* ── Mobile TOC ── */
+nav.toc-mobile{
+  display:none;position:sticky;top:0;z-index:20;
+  background:var(--surface-2);border-bottom:1px solid var(--border);
+  padding:0 12px;overflow-x:auto;white-space:nowrap;
+  -webkit-overflow-scrolling:touch;
+}
+nav.toc-mobile a{
+  display:inline-block;padding:10px 12px;
+  font-size:12px;font-weight:500;color:var(--text-2);
+  text-decoration:none;border-bottom:2px solid transparent;
+}
+nav.toc-mobile a.active{color:var(--brand);border-bottom-color:var(--brand)}
+
+@media(max-width:768px){
+  nav.toc{display:none}
+  nav.toc-mobile{display:flex}
+  main{margin-left:0;padding:16px 16px 60px}
+  h1{font-size:28px}
+  .subtitle{font-size:15px;margin-bottom:24px}
+  section.card{padding:20px;margin-bottom:20px}
+  section.card h2{font-size:19px}
+  body{font-size:15px}
+}
+</style>
+</head>
+<body>
+
+<!-- Desktop TOC -->
+<nav class="toc" id="toc-desktop">
+  <div class="wordmark">Safe Studio</div>
+  <a href="#what">What Is It?</a>
+  <a href="#canvas">The Canvas</a>
+  <a href="#tools">75 Tools</a>
+  <a href="#properties">Properties Wizard</a>
+  <a href="#custom">Custom Tools</a>
+  <a href="#mobile">Mobile-Smart Blocks</a>
+  <a href="#safescript">SafeScript</a>
+  <a href="#debugger">Time-Traveling Debugger</a>
+  <a href="#timeline">The Timeline Tree</a>
+  <a href="#projects">Projects &amp; Export</a>
+  <a href="#collab">Collaboration</a>
+</nav>
+
+<!-- Mobile TOC -->
+<nav class="toc-mobile" id="toc-mobile">
+  <a href="#what">What Is It?</a>
+  <a href="#canvas">Canvas</a>
+  <a href="#tools">Tools</a>
+  <a href="#properties">Properties</a>
+  <a href="#custom">Custom</a>
+  <a href="#mobile">Mobile</a>
+  <a href="#safescript">SafeScript</a>
+  <a href="#debugger">Debugger</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#projects">Export</a>
+  <a href="#collab">Collab</a>
+</nav>
+
+<main>
+
+<h1>Safe Studio</h1>
+<p class="subtitle">A visual page builder in a single file. Build, debug, ship.</p>
+
+<!-- ════════════════════════════════════════════════ -->
+<section class="card" id="what">
+<h2>What Is It?</h2>
+<p>Safe Studio is a visual page builder that runs entirely in your browser. It's one HTML file — download it, double-click, start building. No install, no server, no account. You drag sections onto a canvas, fill them with content blocks, wire up behavior with a safe scripting language, and debug that behavior with a step-by-step time-traveling debugger. The finished page exports as standalone HTML you can host anywhere.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 520 280" width="100%" role="img" aria-label="Safe Studio interface mockup showing canvas, palette, and properties panel">
+  <!-- Window chrome -->
+  <rect x="0" y="0" width="520" height="280" rx="8" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1"/>
+  <rect x="0" y="0" width="520" height="28" rx="8" fill="var(--surface-3)"/>
+  <rect x="0" y="20" width="520" height="8" fill="var(--surface-3)"/>
+  <circle cx="14" cy="14" r="5" fill="var(--red)" opacity=".7"/>
+  <circle cx="30" cy="14" r="5" fill="var(--orange)" opacity=".7"/>
+  <circle cx="46" cy="14" r="5" fill="var(--green)" opacity=".7"/>
+  <text x="260" y="17" text-anchor="middle" font-size="10" font-family="var(--font-body)" fill="var(--text-3)">Safe Studio</text>
+
+  <!-- Canvas area -->
+  <rect x="8" y="34" width="370" height="200" rx="6" fill="var(--surface)" stroke="var(--border)" stroke-width=".5"/>
+  <!-- Nav section -->
+  <rect x="16" y="42" width="354" height="28" rx="4" fill="var(--surface-3)"/>
+  <text x="28" y="60" font-size="11" font-weight="600" font-family="var(--font-display)" fill="var(--text)">Acme Corp</text>
+  <rect x="300" y="48" width="60" height="16" rx="8" fill="var(--brand)"/>
+  <text x="330" y="59" text-anchor="middle" font-size="8" fill="#fff" font-family="var(--font-body)">Sign Up</text>
+  <!-- Hero section -->
+  <rect x="16" y="76" width="354" height="80" rx="4" fill="var(--brand-bg)"/>
+  <text x="193" y="108" text-anchor="middle" font-size="16" font-weight="700" font-family="var(--font-display)" fill="var(--text)">Build Better Software</text>
+  <text x="193" y="124" text-anchor="middle" font-size="9" fill="var(--text-2)" font-family="var(--font-body)">Ship faster with tools your team will love.</text>
+  <rect x="163" y="132" width="60" height="16" rx="8" fill="var(--brand)"/>
+  <text x="193" y="143" text-anchor="middle" font-size="8" fill="#fff">Get Started</text>
+  <!-- Features section -->
+  <rect x="16" y="162" width="112" height="64" rx="4" fill="var(--surface-3)"/>
+  <rect x="137" y="162" width="112" height="64" rx="4" fill="var(--surface-3)"/>
+  <rect x="258" y="162" width="112" height="64" rx="4" fill="var(--surface-3)"/>
+  <text x="72" y="192" text-anchor="middle" font-size="14">⚡</text>
+  <text x="72" y="206" text-anchor="middle" font-size="8" fill="var(--text-2)" font-family="var(--font-body)">Feature 1</text>
+  <text x="193" y="192" text-anchor="middle" font-size="14">🔒</text>
+  <text x="193" y="206" text-anchor="middle" font-size="8" fill="var(--text-2)" font-family="var(--font-body)">Feature 2</text>
+  <text x="314" y="192" text-anchor="middle" font-size="14">📊</text>
+  <text x="314" y="206" text-anchor="middle" font-size="8" fill="var(--text-2)" font-family="var(--font-body)">Feature 3</text>
+
+  <!-- Palette panel (right) -->
+  <rect x="384" y="34" width="130" height="200" rx="6" fill="var(--surface)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="392" y="50" font-size="9" font-weight="600" fill="var(--text-3)" font-family="var(--font-body)">TOOLS</text>
+  <rect x="392" y="56" width="114" height="20" rx="4" fill="var(--surface-3)"/>
+  <text x="400" y="69" font-size="9" fill="var(--text-2)">📝 Rich Text</text>
+  <rect x="392" y="80" width="114" height="20" rx="4" fill="var(--surface-3)"/>
+  <text x="400" y="93" font-size="9" fill="var(--text-2)">🖼 Image</text>
+  <rect x="392" y="104" width="114" height="20" rx="4" fill="var(--surface-3)"/>
+  <text x="400" y="117" font-size="9" fill="var(--text-2)">🎬 Video</text>
+  <rect x="392" y="128" width="114" height="20" rx="4" fill="var(--surface-3)"/>
+  <text x="400" y="141" font-size="9" fill="var(--text-2)">💬 Chat</text>
+  <rect x="392" y="152" width="114" height="20" rx="4" fill="var(--surface-3)"/>
+  <text x="400" y="165" font-size="9" fill="var(--text-2)">⭐ Rating</text>
+  <rect x="392" y="176" width="114" height="20" rx="4" fill="var(--surface-3)"/>
+  <text x="400" y="189" font-size="9" fill="var(--text-2)">📊 Bar Chart</text>
+
+  <!-- Properties bar (bottom) -->
+  <rect x="8" y="240" width="506" height="34" rx="6" fill="var(--surface)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="20" y="260" font-size="9" fill="var(--text-3)" font-family="var(--font-body)">Properties</text>
+  <text x="90" y="260" font-size="9" fill="var(--text-2)">|</text>
+  <text x="104" y="260" font-size="9" fill="var(--text-2)" font-family="var(--font-body)">Handlers</text>
+  <text x="164" y="260" font-size="9" fill="var(--text-2)">|</text>
+  <text x="178" y="260" font-size="9" fill="var(--brand)" font-weight="600" font-family="var(--font-body)">Timeline</text>
+  <text x="240" y="260" font-size="9" fill="var(--text-2)">|</text>
+  <text x="254" y="260" font-size="9" fill="var(--text-2)" font-family="var(--font-body)">Console</text>
+</svg>
+</div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<section class="card" id="canvas">
+<h2>The Canvas</h2>
+<p>A page is made of sections stacked vertically. Each section has a layout — a hero banner, a three-column feature grid, a pricing table, a footer. Inside each section are blocks: a heading, a paragraph, a button, an image. Drag a layout from the palette on the right, and the blocks fill in with placeholder content you can edit.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 400 260" width="100%" role="img" aria-label="Three sections on a canvas: nav bar, hero, and features grid, with labels pointing to Section and Block">
+  <!-- Section 1: Nav -->
+  <rect x="10" y="10" width="380" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="24" y="32" font-size="12" font-weight="600" font-family="var(--font-display)" fill="var(--text)">MySite</text>
+  <text x="310" y="32" font-size="9" fill="var(--text-2)">Home  About  Pricing</text>
+  <!-- Label: Section -->
+  <line x1="395" y1="28" x2="400" y2="28" stroke="var(--brand)" stroke-width="1"/>
+  <!-- Section 2: Hero -->
+  <rect x="10" y="54" width="380" height="90" rx="6" fill="var(--brand-bg)" stroke="var(--brand-dim)" stroke-width=".5" stroke-dasharray="3 2"/>
+  <text x="200" y="88" text-anchor="middle" font-size="18" font-weight="700" font-family="var(--font-display)" fill="var(--text)">Welcome to MySite</text>
+  <text x="200" y="106" text-anchor="middle" font-size="10" fill="var(--text-2)">The easiest way to get started.</text>
+  <rect x="170" y="114" width="60" height="18" rx="9" fill="var(--brand)"/>
+  <text x="200" y="126" text-anchor="middle" font-size="9" fill="#fff">Try Free</text>
+  <!-- Block label -->
+  <line x1="232" y1="123" x2="290" y2="135" stroke="var(--orange)" stroke-width=".8"/>
+  <text x="292" y="139" font-size="9" fill="var(--orange)" font-weight="600">Block</text>
+  <!-- Section label -->
+  <line x1="392" y1="99" x2="400" y2="99" stroke="var(--brand)" stroke-width="1"/>
+
+  <!-- Section 3: Features -->
+  <rect x="10" y="152" width="380" height="96" rx="6" fill="var(--surface-2)" stroke="var(--border)" stroke-width=".5"/>
+  <rect x="20" y="162" width="116" height="76" rx="4" fill="var(--surface)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="78" y="196" text-anchor="middle" font-size="18">⚡</text>
+  <text x="78" y="214" text-anchor="middle" font-size="9" font-weight="500" fill="var(--text)">Fast</text>
+  <text x="78" y="226" text-anchor="middle" font-size="8" fill="var(--text-2)">Loads in under a second</text>
+  <rect x="142" y="162" width="116" height="76" rx="4" fill="var(--surface)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="200" y="196" text-anchor="middle" font-size="18">🔒</text>
+  <text x="200" y="214" text-anchor="middle" font-size="9" font-weight="500" fill="var(--text)">Secure</text>
+  <text x="200" y="226" text-anchor="middle" font-size="8" fill="var(--text-2)">Sandboxed scripts</text>
+  <rect x="264" y="162" width="116" height="76" rx="4" fill="var(--surface)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="322" y="196" text-anchor="middle" font-size="18">📱</text>
+  <text x="322" y="214" text-anchor="middle" font-size="9" font-weight="500" fill="var(--text)">Mobile</text>
+  <text x="322" y="226" text-anchor="middle" font-size="8" fill="var(--text-2)">Responsive out of the box</text>
+
+  <!-- Section label arrow -->
+  <line x1="2" y1="28" x2="8" y2="28" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="0" y="32" font-size="9" fill="var(--brand)" font-weight="600" text-anchor="end" transform="translate(-28,0)">Section</text>
+</svg>
+</div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<section class="card" id="tools">
+<h2>75 Tools</h2>
+<p>The palette has more than text and images. There are chat rooms, video players, comment threads, star ratings, countdown timers, 3D carousels, progress bars, pie charts, data tables, and form inputs. 75 tools across 10 categories. Drop one on a block and the editor shows a live SVG preview of what the tool will look like — a chat tool shows message bubbles, a rating tool shows stars, a chart tool shows bars.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 400 180" width="100%" role="img" aria-label="Grid of twelve tool icons: Chat, Video, Rating, Chart, Carousel, Form, Comments, Countdown, Progress, Tabs, Image, Embed">
+  <!-- Row 1 -->
+  <rect x="8" y="8" width="88" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="16" y="30" font-size="14">💬</text>
+  <text x="36" y="30" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Chat</text>
+  <rect x="104" y="8" width="88" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="112" y="30" font-size="14">🎬</text>
+  <text x="132" y="30" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Video</text>
+  <rect x="200" y="8" width="88" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="208" y="30" font-size="14">⭐</text>
+  <text x="228" y="30" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Rating</text>
+  <rect x="296" y="8" width="96" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="304" y="30" font-size="14">📊</text>
+  <text x="324" y="30" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Bar Chart</text>
+  <!-- Row 2 -->
+  <rect x="8" y="52" width="88" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="16" y="74" font-size="14">🎠</text>
+  <text x="36" y="74" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Carousel</text>
+  <rect x="104" y="52" width="88" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="112" y="74" font-size="14">📋</text>
+  <text x="132" y="74" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Form</text>
+  <rect x="200" y="52" width="88" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="208" y="74" font-size="14">🗨</text>
+  <text x="228" y="74" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Comments</text>
+  <rect x="296" y="52" width="96" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="304" y="74" font-size="14">⏱</text>
+  <text x="324" y="74" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Countdown</text>
+  <!-- Row 3 -->
+  <rect x="8" y="96" width="88" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="16" y="118" font-size="14">⬛</text>
+  <text x="36" y="118" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Progress</text>
+  <rect x="104" y="96" width="88" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="112" y="118" font-size="14">⊟</text>
+  <text x="132" y="118" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Tabs</text>
+  <rect x="200" y="96" width="88" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="208" y="118" font-size="14">🖼</text>
+  <text x="228" y="118" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Image</text>
+  <rect x="296" y="96" width="96" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="304" y="118" font-size="14">🔗</text>
+  <text x="324" y="118" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Embed</text>
+
+  <!-- Summary line -->
+  <text x="200" y="158" text-anchor="middle" font-size="11" fill="var(--text-3)" font-family="var(--font-body)">+ 63 more across Content, Media, Community, Data, Interactive, Navigation, Commerce, HTML</text>
+</svg>
+</div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<section class="card" id="properties">
+<h2>Properties Wizard</h2>
+<p>Click any block and the properties panel appears. Each tool type has its own settings — a Video tool shows a URL field, a Rating tool shows a star count slider, a Chart tool shows a data editor. Stream-connected tools get smart defaults: the publisher field pre-selects "Current Community" so you don't have to look up user IDs. Color pickers, toggles, dropdowns, and number inputs are generated automatically from the tool's registered properties.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 280 220" width="100%" style="max-width:360px" role="img" aria-label="Properties panel mockup showing a dropdown, URL input, color picker, and toggle">
+  <rect x="0" y="0" width="280" height="220" rx="8" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1"/>
+  <text x="14" y="22" font-size="10" font-weight="600" fill="var(--text-3)" font-family="var(--font-body)">🔧 TOOL SETTINGS</text>
+
+  <!-- Publisher dropdown -->
+  <text x="14" y="46" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Publisher</text>
+  <rect x="14" y="52" width="252" height="26" rx="5" fill="var(--surface)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="22" y="69" font-size="11" fill="var(--text)" font-family="var(--font-body)">Current Community</text>
+  <text x="250" y="69" font-size="10" fill="var(--text-3)">▾</text>
+
+  <!-- URL input -->
+  <text x="14" y="98" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Video URL</text>
+  <rect x="14" y="104" width="252" height="26" rx="5" fill="var(--surface)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="22" y="121" font-size="10" fill="var(--text-3)" font-family="var(--font-body)">https://youtube.com/watch?v=...</text>
+
+  <!-- Color picker + toggle row -->
+  <text x="14" y="150" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Bar Color</text>
+  <circle cx="30" cy="164" r="10" fill="var(--brand)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="48" y="168" font-size="10" fill="var(--text-3)" font-family="var(--font-body)">#6366f1</text>
+
+  <text x="150" y="150" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Show %</text>
+  <!-- Toggle ON -->
+  <rect x="150" y="156" width="32" height="18" rx="9" fill="var(--brand)"/>
+  <circle cx="173" cy="165" r="7" fill="#fff"/>
+
+  <!-- Number input -->
+  <text x="14" y="198" font-size="10" fill="var(--text-2)" font-family="var(--font-body)">Max Stars</text>
+  <rect x="14" y="202" width="60" height="22" rx="4" fill="var(--surface)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="40" y="217" text-anchor="middle" font-size="11" fill="var(--text)" font-family="var(--font-body)">5</text>
+</svg>
+</div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<section class="card" id="custom">
+<h2>Custom Tools</h2>
+<p>You can build your own tools from existing ones. Enter the tool editor — it's the same canvas and palette — arrange blocks, write handlers, exit, and your new tool appears in the palette under "My Tools." Drag it onto any page. Each instance keeps its own state, so a "Contact Card" tool used three times on a page holds three separate sets of data.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 460 120" width="100%" role="img" aria-label="A tool being built in the editor, an arrow, the tool appearing in the palette, then three instances on a page">
+  <!-- Editor (small) -->
+  <rect x="0" y="10" width="120" height="100" rx="6" fill="var(--surface-2)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="60" y="8" text-anchor="middle" font-size="8" fill="var(--text-3)">Tool Editor</text>
+  <rect x="8" y="22" width="104" height="20" rx="3" fill="var(--surface-3)"/>
+  <text x="14" y="35" font-size="8" fill="var(--text-2)">👤 Avatar</text>
+  <rect x="8" y="46" width="104" height="20" rx="3" fill="var(--surface-3)"/>
+  <text x="14" y="59" font-size="8" fill="var(--text-2)">📝 Name</text>
+  <rect x="8" y="70" width="104" height="20" rx="3" fill="var(--surface-3)"/>
+  <text x="14" y="83" font-size="8" fill="var(--text-2)">📧 Email</text>
+  <rect x="8" y="94" width="50" height="12" rx="6" fill="var(--brand)"/>
+  <text x="33" y="103" text-anchor="middle" font-size="7" fill="#fff">Save</text>
+
+  <!-- Arrow -->
+  <line x1="128" y1="60" x2="158" y2="60" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="var(--brand)"/></marker></defs>
+
+  <!-- Palette item -->
+  <rect x="166" y="40" width="80" height="40" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="206" y="58" text-anchor="middle" font-size="8" fill="var(--text-3)">🔧 My Tools</text>
+  <text x="206" y="72" text-anchor="middle" font-size="9" font-weight="500" fill="var(--text)">Contact Card</text>
+
+  <!-- Arrow -->
+  <line x1="254" y1="60" x2="284" y2="60" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Three instances on page -->
+  <rect x="292" y="10" width="160" height="100" rx="6" fill="var(--surface-2)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="372" y="8" text-anchor="middle" font-size="8" fill="var(--text-3)">Your Page</text>
+  <rect x="300" y="20" width="44" height="40" rx="4" fill="var(--surface)" stroke="var(--brand-dim)" stroke-width=".5"/>
+  <text x="322" y="36" text-anchor="middle" font-size="10">👤</text>
+  <text x="322" y="50" text-anchor="middle" font-size="6" fill="var(--text-2)">Alice</text>
+  <rect x="350" y="20" width="44" height="40" rx="4" fill="var(--surface)" stroke="var(--brand-dim)" stroke-width=".5"/>
+  <text x="372" y="36" text-anchor="middle" font-size="10">👤</text>
+  <text x="372" y="50" text-anchor="middle" font-size="6" fill="var(--text-2)">Bob</text>
+  <rect x="400" y="20" width="44" height="40" rx="4" fill="var(--surface)" stroke="var(--brand-dim)" stroke-width=".5"/>
+  <text x="422" y="36" text-anchor="middle" font-size="10">👤</text>
+  <text x="422" y="50" text-anchor="middle" font-size="6" fill="var(--text-2)">Carol</text>
+  <text x="372" y="80" text-anchor="middle" font-size="8" fill="var(--text-3)">3 instances, 3 separate states</text>
+</svg>
+</div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<section class="card" id="mobile">
+<h2>Mobile-Smart Blocks</h2>
+<p>Blocks can change shape on phones. Set any block to accordion (tap a header to expand it), dropdown (a button that reveals content), or drawer (slides up from the bottom of the screen). Set a whole section to tabs mode and each block becomes a tab panel. All of this is configured in the properties panel — no code.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 200 320" width="100%" style="max-width:260px" role="img" aria-label="Phone frame showing accordion blocks: two collapsed with chevrons, one expanded with content visible">
+  <!-- Phone frame -->
+  <rect x="10" y="0" width="180" height="320" rx="20" fill="var(--surface-2)" stroke="var(--border-2)" stroke-width="1.5"/>
+  <rect x="70" y="6" width="60" height="6" rx="3" fill="var(--border)"/>
+  <!-- Screen -->
+  <rect x="18" y="20" width="164" height="280" rx="4" fill="var(--surface)"/>
+
+  <!-- Accordion 1: collapsed -->
+  <rect x="24" y="28" width="152" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="34" y="50" font-size="10" font-weight="500" fill="var(--text)">About Us</text>
+  <text x="164" y="50" font-size="12" fill="var(--text-3)">▸</text>
+
+  <!-- Accordion 2: expanded -->
+  <rect x="24" y="70" width="152" height="100" rx="6" fill="var(--brand-bg)" stroke="var(--brand-dim)" stroke-width=".5"/>
+  <rect x="24" y="70" width="152" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="34" y="92" font-size="10" font-weight="600" fill="var(--brand)">Our Services</text>
+  <text x="164" y="92" font-size="12" fill="var(--brand)">▾</text>
+  <!-- Expanded content -->
+  <text x="34" y="122" font-size="9" fill="var(--text-2)">Web development</text>
+  <text x="34" y="136" font-size="9" fill="var(--text-2)">Mobile apps</text>
+  <text x="34" y="150" font-size="9" fill="var(--text-2)">Cloud hosting</text>
+  <rect x="34" y="156" width="50" height="10" rx="5" fill="var(--brand)" opacity=".6"/>
+
+  <!-- Accordion 3: collapsed -->
+  <rect x="24" y="176" width="152" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="34" y="198" font-size="10" font-weight="500" fill="var(--text)">Contact</text>
+  <text x="164" y="198" font-size="12" fill="var(--text-3)">▸</text>
+
+  <!-- Accordion 4: collapsed -->
+  <rect x="24" y="218" width="152" height="36" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="34" y="240" font-size="10" font-weight="500" fill="var(--text)">FAQ</text>
+  <text x="164" y="240" font-size="12" fill="var(--text-3)">▸</text>
+
+  <!-- Label -->
+  <text x="100" y="280" text-anchor="middle" font-size="8" fill="var(--text-3)">📱 Mobile: accordion mode</text>
+</svg>
+</div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<section class="card" id="safescript">
+<h2>SafeScript</h2>
+<p>SafeScript is how blocks get behavior. Write a handler for onClick, onLoad, or onVisible — the code runs in a sandbox that can read and change elements on the page but can't do anything outside it. No network access, no file access, no eval. You reference elements by name: <code>Section1_$Title.style.color = 'red'</code> changes the title's color. The editor autocompletes element names, stream methods, and tool children as you type.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 420 140" width="100%" role="img" aria-label="Code editor with SafeScript on the left, arrow pointing to a block on the canvas whose title turned red">
+  <!-- Code editor -->
+  <rect x="0" y="0" width="220" height="140" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="8" y="14" font-size="8" fill="var(--text-3)" font-family="var(--font-body)">onClick handler</text>
+  <rect x="4" y="20" width="212" height="112" rx="4" fill="#1e1e2e"/>
+  <text x="10" y="38" font-size="9" fill="#c678dd" font-family="monospace">function</text>
+  <text x="58" y="38" font-size="9" fill="#61afef" font-family="monospace">onClick</text>
+  <text x="93" y="38" font-size="9" fill="#abb2bf" font-family="monospace">(event) {</text>
+  <text x="20" y="56" font-size="9" fill="#abb2bf" font-family="monospace">Section1_$Title</text>
+  <text x="118" y="56" font-size="9" fill="#abb2bf" font-family="monospace">.style</text>
+  <text x="20" y="72" font-size="9" fill="#abb2bf" font-family="monospace">  .color = </text>
+  <text x="82" y="72" font-size="9" fill="#98c379" font-family="monospace">'red'</text>
+  <text x="106" y="72" font-size="9" fill="#abb2bf" font-family="monospace">;</text>
+  <text x="10" y="92" font-size="9" fill="#abb2bf" font-family="monospace">}</text>
+  <!-- Line numbers -->
+  <text x="6" y="38" font-size="7" fill="#4b5263" font-family="monospace">1</text>
+  <text x="6" y="56" font-size="7" fill="#4b5263" font-family="monospace">2</text>
+  <text x="6" y="72" font-size="7" fill="#4b5263" font-family="monospace">3</text>
+  <text x="6" y="92" font-size="7" fill="#4b5263" font-family="monospace">4</text>
+
+  <!-- Arrow -->
+  <line x1="228" y1="70" x2="268" y2="70" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Canvas block -->
+  <rect x="276" y="20" width="140" height="100" rx="6" fill="var(--surface-2)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="346" y="14" text-anchor="middle" font-size="8" fill="var(--text-3)">Canvas</text>
+  <text x="346" y="60" text-anchor="middle" font-size="16" font-weight="700" font-family="var(--font-display)" fill="var(--red)">Welcome!</text>
+  <text x="346" y="78" text-anchor="middle" font-size="8" fill="var(--text-3)">↑ color changed to red</text>
+  <rect x="316" y="90" width="60" height="18" rx="9" fill="var(--brand)"/>
+  <text x="346" y="102" text-anchor="middle" font-size="8" fill="#fff">Click Me</text>
+</svg>
+</div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<section class="card" id="debugger">
+<h2>The Time-Traveling Debugger</h2>
+<p>Click Step and execution pauses at each line. The locals panel shows every variable and its current value. Hover any variable name in the code to see a tooltip with what it holds right now.</p>
+<p>The debugger records every change your code makes in a journal. The actual page stays untouched — the changes are held in an overlay. Scrub backward through the step history and the page rewinds to the state at that exact line. Scrub forward and it replays. At any paused step, fork the timeline to explore a different code path without losing the original one.</p>
+<p>When you're done exploring, commit to apply the changes to the real page, or discard to throw them all away. The page returns to its original state as if nothing happened.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 440 180" width="100%" role="img" aria-label="Timeline with colored circles for code steps, a fork branch, and before/after page states">
+  <!-- Timeline bar -->
+  <line x1="30" y1="30" x2="410" y2="30" stroke="var(--border)" stroke-width="2"/>
+  <!-- Steps -->
+  <circle cx="50" cy="30" r="8" fill="var(--green)"/>
+  <text x="50" y="34" text-anchor="middle" font-size="7" fill="#fff" font-weight="600">1</text>
+  <circle cx="110" cy="30" r="8" fill="var(--green)"/>
+  <text x="110" y="34" text-anchor="middle" font-size="7" fill="#fff" font-weight="600">2</text>
+  <circle cx="170" cy="30" r="8" fill="var(--green)"/>
+  <text x="170" y="34" text-anchor="middle" font-size="7" fill="#fff" font-weight="600">3</text>
+  <!-- Current step indicator -->
+  <circle cx="230" cy="30" r="10" fill="var(--brand)" stroke="#fff" stroke-width="2"/>
+  <text x="230" y="34" text-anchor="middle" font-size="7" fill="#fff" font-weight="700">4</text>
+  <text x="230" y="16" text-anchor="middle" font-size="8" fill="var(--brand)" font-weight="600">▼ now</text>
+  <!-- Future steps -->
+  <circle cx="290" cy="30" r="8" fill="var(--border)" stroke="var(--border-2)" stroke-width="1"/>
+  <text x="290" y="34" text-anchor="middle" font-size="7" fill="var(--text-3)">5</text>
+  <circle cx="350" cy="30" r="8" fill="var(--border)" stroke="var(--border-2)" stroke-width="1"/>
+  <text x="350" y="34" text-anchor="middle" font-size="7" fill="var(--text-3)">6</text>
+
+  <!-- Fork from step 3 -->
+  <line x1="170" y1="38" x2="170" y2="70" stroke="var(--orange)" stroke-width="1.5"/>
+  <line x1="170" y1="70" x2="260" y2="70" stroke="var(--orange)" stroke-width="1.5"/>
+  <circle cx="210" cy="70" r="7" fill="var(--orange)"/>
+  <text x="210" y="74" text-anchor="middle" font-size="6" fill="#fff" font-weight="600">3b</text>
+  <circle cx="260" cy="70" r="7" fill="var(--orange)"/>
+  <text x="260" y="74" text-anchor="middle" font-size="6" fill="#fff" font-weight="600">4b</text>
+  <text x="260" y="88" text-anchor="middle" font-size="8" fill="var(--orange)">forked path</text>
+
+  <!-- Before / After -->
+  <rect x="30" y="104" width="120" height="68" rx="6" fill="var(--surface-2)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="90" y="120" text-anchor="middle" font-size="9" font-weight="600" fill="var(--text-2)">Before (step 1)</text>
+  <text x="90" y="148" text-anchor="middle" font-size="14" font-weight="700" font-family="var(--font-display)" fill="var(--text)">Hello</text>
+  <text x="90" y="162" text-anchor="middle" font-size="8" fill="var(--text-3)">color: black</text>
+
+  <text x="175" y="142" font-size="16" fill="var(--brand)">→</text>
+
+  <rect x="200" y="104" width="120" height="68" rx="6" fill="var(--brand-bg)" stroke="var(--brand-dim)" stroke-width=".5"/>
+  <text x="260" y="120" text-anchor="middle" font-size="9" font-weight="600" fill="var(--brand)">After (step 4)</text>
+  <text x="260" y="148" text-anchor="middle" font-size="14" font-weight="700" font-family="var(--font-display)" fill="var(--red)">Hello</text>
+  <text x="260" y="162" text-anchor="middle" font-size="8" fill="var(--text-3)">color: red</text>
+
+  <!-- Buttons -->
+  <rect x="348" y="110" width="70" height="24" rx="6" fill="var(--green)"/>
+  <text x="383" y="126" text-anchor="middle" font-size="9" fill="#fff" font-weight="600">Commit ✓</text>
+  <rect x="348" y="142" width="70" height="24" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="383" y="158" text-anchor="middle" font-size="9" fill="var(--text-2)" font-weight="500">Discard ✕</text>
+</svg>
+</div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<section class="card" id="timeline">
+<h2>The Timeline Tree</h2>
+<p>Every action in the editor — adding a section, changing a property, running a handler — becomes a node in a tree. Undo moves back one node. Redo moves forward. If you undo to a point and then make a different edit, the tree forks. Both branches stay. A badge on the forking node shows the branch count — click it to switch between them.</p>
+<p>The tree renders as a vertical list of colored discs connected by a line. Each disc shows an icon: ✏ for edits, ⚡ for events, ⟨/⟩ for code runs. The active branch is highlighted. You can jump to any node by clicking it, and the page restores to its state at that point.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 300 280" width="100%" style="max-width:380px" role="img" aria-label="Vertical timeline tree with five nodes, a fork at node 3 with two branches, and a popup showing branch options">
+  <!-- Main line -->
+  <line x1="40" y1="24" x2="40" y2="250" stroke="var(--border)" stroke-width="2"/>
+
+  <!-- Node 1: init -->
+  <circle cx="40" cy="30" r="10" fill="var(--text-3)"/>
+  <text x="40" y="34" text-anchor="middle" font-size="9" fill="#fff">○</text>
+  <text x="60" y="28" font-size="11" fill="var(--text-2)" font-family="var(--font-body)">Initial</text>
+  <text x="60" y="40" font-size="8" fill="var(--text-3)" font-family="monospace">0s</text>
+
+  <!-- Node 2: edit -->
+  <circle cx="40" cy="80" r="10" fill="var(--blue)"/>
+  <text x="40" y="84" text-anchor="middle" font-size="9" fill="#fff">✏</text>
+  <text x="60" y="78" font-size="11" fill="var(--text-2)" font-family="var(--font-body)">Added hero section</text>
+  <text x="60" y="90" font-size="8" fill="var(--text-3)" font-family="monospace">3s</text>
+
+  <!-- Node 3: edit — fork point -->
+  <circle cx="40" cy="130" r="10" fill="var(--blue)"/>
+  <text x="40" y="134" text-anchor="middle" font-size="9" fill="#fff">✏</text>
+  <text x="60" y="128" font-size="11" fill="var(--text-2)" font-family="var(--font-body)">Changed layout</text>
+  <text x="60" y="140" font-size="8" fill="var(--text-3)" font-family="monospace">8s</text>
+  <!-- Fork badge -->
+  <rect x="200" y="122" width="28" height="20" rx="10" fill="var(--brand)"/>
+  <text x="214" y="136" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">2▾</text>
+
+  <!-- Branch A (active path) -->
+  <circle cx="40" cy="180" r="10" fill="var(--green)" stroke="var(--brand)" stroke-width="2"/>
+  <text x="40" y="184" text-anchor="middle" font-size="8" fill="#fff">⟨/⟩</text>
+  <text x="60" y="178" font-size="11" font-weight="600" fill="var(--text)" font-family="var(--font-body)">Ran onClick handler</text>
+  <text x="60" y="190" font-size="8" fill="var(--text-3)" font-family="monospace">12s</text>
+
+  <!-- Current indicator -->
+  <text x="20" y="184" text-anchor="middle" font-size="10" fill="var(--brand)">▶</text>
+
+  <!-- Node 5 -->
+  <circle cx="40" cy="230" r="10" fill="var(--blue)"/>
+  <text x="40" y="234" text-anchor="middle" font-size="9" fill="#fff">✏</text>
+  <text x="60" y="228" font-size="11" fill="var(--text-2)" font-family="var(--font-body)">Swapped to tabs</text>
+  <text x="60" y="240" font-size="8" fill="var(--text-3)" font-family="monospace">15s</text>
+
+  <!-- Branch B (inactive, shown in popup) -->
+  <rect x="170" y="150" width="124" height="68" rx="8" fill="var(--surface-2)" stroke="var(--border-2)" stroke-width="1"/>
+  <text x="180" y="168" font-size="9" font-weight="600" fill="var(--text-3)">Branches:</text>
+  <rect x="178" y="176" width="108" height="16" rx="4" fill="var(--brand-bg)"/>
+  <circle cx="190" cy="184" r="4" fill="var(--green)"/>
+  <text x="200" y="188" font-size="9" fill="var(--text)">⟨/⟩ Ran onClick</text>
+  <rect x="178" y="196" width="108" height="16" rx="4" fill="var(--surface-3)"/>
+  <circle cx="190" cy="204" r="4" fill="var(--orange)"/>
+  <text x="200" y="208" font-size="9" fill="var(--text-2)">⚡ Added testimonials</text>
+</svg>
+</div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<section class="card" id="projects">
+<h2>Projects &amp; Export</h2>
+<p>A project holds multiple pages. Each page is a tab — Home, About, Pricing. Tools are shared across all pages. Export any page as a standalone HTML file with all content, styles, and behavior baked in. Import pages from JSON. Clone an existing website by pasting its HTML source — Safe Studio extracts the sections, layout, text, images, and color theme mechanically and builds an editable page from it.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 400 100" width="100%" role="img" aria-label="Three page tabs (Home, About, Pricing) with an export arrow pointing to an HTML file icon">
+  <!-- Tabs -->
+  <rect x="10" y="10" width="260" height="34" rx="6" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".5"/>
+  <rect x="14" y="14" width="70" height="26" rx="4" fill="var(--brand)"/>
+  <text x="49" y="31" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">Home</text>
+  <rect x="88" y="14" width="70" height="26" rx="4" fill="var(--surface)"/>
+  <text x="123" y="31" text-anchor="middle" font-size="10" fill="var(--text-2)">About</text>
+  <rect x="162" y="14" width="70" height="26" rx="4" fill="var(--surface)"/>
+  <text x="197" y="31" text-anchor="middle" font-size="10" fill="var(--text-2)">Pricing</text>
+  <rect x="238" y="17" width="24" height="20" rx="4" fill="var(--surface)" stroke="var(--border)" stroke-width=".3"/>
+  <text x="250" y="31" text-anchor="middle" font-size="12" fill="var(--text-3)">+</text>
+
+  <!-- Arrow -->
+  <line x1="280" y1="27" x2="318" y2="27" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="299" y="20" text-anchor="middle" font-size="7" fill="var(--text-3)">Export</text>
+
+  <!-- HTML file -->
+  <rect x="326" y="6" width="60" height="72" rx="4" fill="var(--surface)" stroke="var(--border)" stroke-width="1"/>
+  <rect x="326" y="6" width="60" height="18" rx="4" fill="var(--orange)" opacity=".2"/>
+  <rect x="326" y="20" width="60" height="4" fill="var(--surface)"/>
+  <text x="356" y="18" text-anchor="middle" font-size="8" fill="var(--orange)" font-weight="600">&lt;/&gt;</text>
+  <text x="356" y="38" text-anchor="middle" font-size="7" fill="var(--text-3)">my-page</text>
+  <text x="356" y="50" text-anchor="middle" font-size="7" fill="var(--text-3)">.html</text>
+  <text x="356" y="68" text-anchor="middle" font-size="6" fill="var(--text-3)">standalone</text>
+
+  <!-- Clone label -->
+  <text x="140" y="66" text-anchor="middle" font-size="9" fill="var(--text-3)">Clone any site → paste HTML → editable page</text>
+  <text x="140" y="80" text-anchor="middle" font-size="9" fill="var(--text-3)">Import/export as JSON</text>
+</svg>
+</div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<section class="card" id="collab">
+<h2>What's Next: Collaboration</h2>
+<p>When Safe Studio connects to a Qbix backend, pages become streams. Two people open the same page and see each other's edits in real time — colored selection outlines show who's working where. Every edit is a message on the stream, so version history comes free. Fork a page to try something different without affecting the original. Invite collaborators with roles (owner, editor, viewer). Comment on individual blocks. The same access control, real-time sync, and notification infrastructure that powers Qbix's social tools powers the page editor.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 360 160" width="100%" role="img" aria-label="Two people editing the same page, with colored outlines on different blocks and a stream icon between them">
+  <!-- Page (center) -->
+  <rect x="80" y="20" width="200" height="130" rx="8" fill="var(--surface-2)" stroke="var(--border)" stroke-width=".5"/>
+  <!-- Block 1 — selected by Alice (blue) -->
+  <rect x="92" y="32" width="176" height="30" rx="4" fill="var(--surface-3)" stroke="var(--blue)" stroke-width="2"/>
+  <text x="180" y="51" text-anchor="middle" font-size="10" fill="var(--text)">Hero Heading</text>
+  <!-- Block 2 — selected by Bob (green) -->
+  <rect x="92" y="68" width="176" height="30" rx="4" fill="var(--surface-3)" stroke="var(--green)" stroke-width="2"/>
+  <text x="180" y="87" text-anchor="middle" font-size="10" fill="var(--text)">Feature Grid</text>
+  <!-- Block 3 — no selection -->
+  <rect x="92" y="104" width="176" height="30" rx="4" fill="var(--surface-3)" stroke="var(--border)" stroke-width=".5"/>
+  <text x="180" y="123" text-anchor="middle" font-size="10" fill="var(--text-2)">Footer</text>
+
+  <!-- Alice avatar (left) -->
+  <circle cx="36" cy="47" r="18" fill="var(--blue)" opacity=".15"/>
+  <circle cx="36" cy="47" r="14" fill="var(--blue)"/>
+  <text x="36" y="52" text-anchor="middle" font-size="12" fill="#fff">A</text>
+  <text x="36" y="72" text-anchor="middle" font-size="8" fill="var(--blue)" font-weight="500">Alice</text>
+  <line x1="54" y1="47" x2="90" y2="47" stroke="var(--blue)" stroke-width="1" stroke-dasharray="3 2"/>
+
+  <!-- Bob avatar (right) -->
+  <circle cx="324" cy="83" r="18" fill="var(--green)" opacity=".15"/>
+  <circle cx="324" cy="83" r="14" fill="var(--green)"/>
+  <text x="324" y="88" text-anchor="middle" font-size="12" fill="#fff">B</text>
+  <text x="324" y="108" text-anchor="middle" font-size="8" fill="var(--green)" font-weight="500">Bob</text>
+  <line x1="270" y1="83" x2="310" y2="83" stroke="var(--green)" stroke-width="1" stroke-dasharray="3 2"/>
+
+  <!-- Stream icon -->
+  <text x="180" y="156" text-anchor="middle" font-size="9" fill="var(--text-3)">real-time sync via Streams</text>
+</svg>
+</div>
+</section>
+
+</main>
+
+<!-- ═══ Scroll-spy ═══ -->
+<script>
+(function(){
+  var sections = document.querySelectorAll('section.card[id]');
+  var tocDesktop = document.querySelectorAll('#toc-desktop a');
+  var tocMobile = document.querySelectorAll('#toc-mobile a');
+
+  function update(){
+    var scrollY = window.scrollY + 100;
+    var current = '';
+    sections.forEach(function(s){
+      if(s.offsetTop <= scrollY) current = s.id;
+    });
+    tocDesktop.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+    tocMobile.forEach(function(a){
+      var isActive = a.getAttribute('href') === '#' + current;
+      a.classList.toggle('active', isActive);
+      if(isActive && window.innerWidth <= 768){
+        // Use scrollLeft instead of scrollIntoView to avoid fighting page scroll
+        var nav = a.parentNode;
+        var navRect = nav.getBoundingClientRect();
+        var aRect = a.getBoundingClientRect();
+        var targetScroll = nav.scrollLeft + (aRect.left - navRect.left) - (navRect.width / 2) + (aRect.width / 2);
+        nav.scrollLeft = targetScroll;
+      }
+    });
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      window.requestAnimationFrame(function(){ update(); ticking = false; });
+      ticking = true;
+    }
+  });
+  update();
+
+  // Smooth scroll for TOC links
+  document.querySelectorAll('nav a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+})();
+</script>
+</body>
+</html>

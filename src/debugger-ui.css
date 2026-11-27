@@ -1,0 +1,352 @@
+#ss-debug-explorer {
+  padding: 12px 16px;
+  background: linear-gradient(120deg, var(--theme-bg-2), var(--theme-bg-3));
+  border-block: 1px solid var(--theme-border);
+  flex-shrink: 0;
+  min-width: 0;
+}
+#ss-debug-explorer[hidden] {
+  display: none;
+}
+.ss-explorer-top,
+.ss-explorer-controls,
+.ss-explorer-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.ss-explorer-top strong {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+.ss-explorer-top > span {
+  flex: 1;
+  min-width: 120px;
+  font-size: 11px;
+  color: var(--theme-fg-2);
+}
+.ss-explorer-controls {
+  margin-top: 10px;
+}
+.ss-explorer-controls select {
+  flex: 1;
+  min-width: 110px;
+  max-width: 250px;
+  border: 1px solid var(--theme-border);
+  border-radius: 5px;
+  background: var(--theme-bg-1);
+  color: var(--theme-fg);
+  padding: 5px;
+  font-size: 11px;
+}
+#ss-explorer-continue {
+  background: var(--theme-brand);
+  color: white;
+  border-color: transparent;
+}
+#ss-debug-scrubber {
+  display: block;
+  width: 100%;
+  margin: 2px 0 8px;
+  accent-color: var(--theme-brand);
+  cursor: ew-resize;
+  min-height: 24px;
+  touch-action: pan-y;
+}
+#ss-debug-fork-map {
+  max-height: 92px;
+  overflow: auto;
+  min-width: 0;
+}
+#ss-debug-fork-map svg {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  max-height: 120px;
+}
+#ss-debug-fork-map path {
+  fill: none;
+  stroke: var(--theme-border-2);
+  stroke-width: 2.5;
+}
+#ss-debug-fork-map path.active {
+  stroke: var(--theme-brand);
+}
+#ss-debug-fork-map circle {
+  fill: var(--theme-fg-3);
+  stroke: var(--theme-bg-1);
+  stroke-width: 1.5;
+}
+#ss-debug-fork-map circle.active {
+  fill: var(--theme-brand);
+}
+#ss-debug-fork-map circle.selected {
+  fill: #f59e0b;
+  stroke: white;
+  stroke-width: 2;
+}
+#ss-debug-fork-map g {
+  cursor: pointer;
+}
+#ss-debug-fork-map g.locked {
+  opacity: 0.35;
+}
+#ss-debug-values {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  font-family: var(--theme-font-mono);
+}
+#ss-debug-values > span {
+  padding: 4px 8px;
+  border: 1px solid var(--theme-border);
+  border-radius: 5px;
+  background: var(--theme-bg-1);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+#ss-debug-values b {
+  color: var(--theme-brand);
+}
+.ss-explorer-foot {
+  margin-top: 8px;
+  font-size: 10px;
+  color: var(--theme-fg-3);
+}
+.ss-explorer-foot button {
+  margin-left: auto;
+}
+.ss-event-record-settings {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 6px 16px;
+  font-size: 11px;
+  border-bottom: 1px solid var(--theme-border);
+  flex-shrink: 0;
+}
+.ss-event-record-settings label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ss-event-steps {
+  margin: 0 6px 10px 28px;
+  border-left: 1px solid var(--theme-border);
+}
+.ss-event-step {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-left: 3px solid transparent;
+  padding: 6px 10px 6px calc(10px + var(--call-depth) * 14px);
+  color: var(--theme-fg-2);
+  cursor: pointer;
+  min-width: 0;
+}
+.ss-event-step:hover {
+  background: var(--theme-bg-3);
+}
+.ss-event-step.current {
+  background: rgba(99, 102, 241, 0.14);
+  border-left-color: var(--theme-brand);
+  color: var(--theme-fg);
+}
+.ss-event-step:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.ss-step-position {
+  font-size: 10px;
+  opacity: 0.5;
+  min-width: 18px;
+}
+.ss-step-code {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+.ss-step-code strong {
+  font-size: 10px;
+  font-weight: 600;
+}
+.ss-step-code code {
+  font-size: 11px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.ss-step-code small {
+  font-size: 10px;
+  color: var(--theme-fg-3);
+  overflow-wrap: anywhere;
+}
+.ss-fork-label,
+.ss-execution-badge {
+  font-size: 10px;
+  white-space: nowrap;
+  padding: 3px 6px;
+  background: var(--theme-brand-bg);
+  color: var(--theme-brand);
+  border-radius: 10px;
+}
+.ss-execution-badge {
+  margin-left: auto;
+}
+.ss-execution-event {
+  flex-wrap: wrap;
+}
+body.ss-debug-active #timeline-list {
+  max-height: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 90px;
+}
+body.ss-debug-active #ide-panels {
+  height: 420px;
+  max-height: 55dvh;
+}
+#ss-debug-edit-status {
+  font-size: 10px;
+  color: var(--theme-fg-3);
+  max-width: 180px;
+  overflow-wrap: anywhere;
+}
+#dbg-toolbar {
+  flex-wrap: wrap;
+}
+#cv-wrap {
+  position: relative;
+}
+#ss-debug-projection {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  background: var(--theme-bg);
+  pointer-events: none;
+  overflow: auto;
+  padding: 12px 18px;
+}
+.ss-projection-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  background: #17243d;
+  color: #b4d0ff;
+  padding: 7px 12px;
+  border-radius: 7px;
+  margin-bottom: 10px;
+}
+.ss-projection-page {
+  background: var(--theme-bg);
+  min-height: 100%;
+}
+.step-row {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  width: 100%;
+  text-align: left;
+}
+.local-val[contenteditable="true"] {
+  min-width: 34px;
+  border-bottom: 1px dotted var(--theme-border-2);
+}
+@media (max-width: 768px) {
+  body.ss-debug-active #ide-panels {
+    height: auto;
+    max-height: none;
+  }
+  #ss-debug-explorer {
+    padding: 10px;
+    max-height: 47dvh;
+    overflow-y: auto;
+  }
+  .ss-explorer-top > span {
+    flex-basis: 100%;
+    order: 2;
+  }
+  .ss-explorer-controls {
+    gap: 6px;
+  }
+  .ss-explorer-controls .btn-sm,
+  .ss-explorer-top .btn-sm,
+  .ss-explorer-foot .btn-sm {
+    min-height: 40px;
+    padding: 7px 9px;
+    font-size: 11px;
+  }
+  .ss-explorer-controls select {
+    max-width: 100%;
+    min-height: 40px;
+    flex-basis: 100%;
+  }
+  #ss-debug-scrubber {
+    min-height: 40px;
+  }
+  .ss-event-step {
+    min-height: 48px;
+    padding-left: calc(6px + var(--call-depth) * 8px);
+  }
+  .ss-event-steps {
+    margin-left: 12px;
+  }
+  .ss-execution-badge {
+    white-space: normal;
+  }
+  #ss-debug-values {
+    gap: 4px;
+  }
+  #ss-debug-fork-map {
+    max-height: 80px;
+  }
+  #ss-debug-edit-status {
+    max-width: 100%;
+    font-size: 9px;
+  }
+  .ss-event-record-settings {
+    gap: 8px;
+    padding: 7px 10px;
+  }
+  .ss-event-record-settings label {
+    min-height: 32px;
+  }
+  #ss-debug-projection {
+    padding: 8px;
+  }
+}
+
+@media (min-width: 769px) {
+  body.ss-debug-active #ide-panels.open {
+    height: min(420px, 52dvh);
+    flex: 0 0 min(420px, 52dvh);
+  }
+  body.ss-debug-active #ide-dock:has(#ide-panels.open) {
+    min-height: min(448px, 55dvh);
+  }
+}
+body.ss-debug-active.preview-mode #code-panel {
+  display: flex;
+}
+@media (max-width: 768px) {
+  body.ss-debug-active.preview-mode #tab-bar {
+    display: flex !important;
+  }
+}
+
+#ss-debug-fork-map circle.ss-fork-hit {
+  fill: transparent !important;
+  stroke: none !important;
+}
+.ss-explorer-controls button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
